@@ -42,6 +42,7 @@ function login(){
         if($_POST['clave'] == $usuario->getClave())
         {
             $_SESSION['usuario'] = $usuario->getNombreusuario();
+            header("location:http://www.impuso2015.tk");
         }
     }
     

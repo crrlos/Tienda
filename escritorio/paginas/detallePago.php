@@ -24,6 +24,7 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])
             <select name="formadepago">
                 <option value="1">Paypal</option>
                 <option value="2">Tranferencia Bancaria</option>
+                <option value="3"> Pagadito</option>
             </select>
         </td>
     </tr>

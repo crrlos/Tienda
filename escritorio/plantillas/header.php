@@ -21,7 +21,33 @@
 <div id="wrapper">
     <header>
         <div id="banner">
-           
+            <div id="buscar">
+                <form action="http://www.impuso2015.tk/buscar">
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="text" placeholder="Buscar...">
+                            </td>
+                            <td>
+                                 <button type="submit">
+                        <img src="http://www.impuso2015.tk/imagenes/lupa.jpg" width="10">
+                    </button>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                   
+                </form>
+            </div>
+            <div id="acceso">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="button">
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </header>
 <nav id="nav"> 

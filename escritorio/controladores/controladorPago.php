@@ -31,6 +31,16 @@ class ControladorPago {
                 }
             }
         } elseif ($_POST['formadepago'] == 2) {/* pago por depósito o transferencia bancaria */
+        }elseif ($_POST['formadepago']==3)
+        {/**pago con pagadito **/
+            if (isset($_SESSION['usuario'])) {
+                $idusuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])->getIdusuario();
+                $pedido = PedidosQuery::create()->filterByIdcliente($idusuario)->filterByEstado('pendiente')->findOne();
+                $detallePedido = $pedido != null ? $pedido->getDetallepedidoss() : null;
+                if ($detallePedido != null) {
+                    include __DIR__ . '/../paginas/generarPagadito.php';
+                }
+            }
         }
     }
 
