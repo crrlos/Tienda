@@ -23,7 +23,7 @@
                             
                             ?>
                             <li>
-                                <a href="http://www.impuso2015.tk/productos/<?php echo str_replace(' ','-', $subcategoria->getNombre())?>">
+                                <a href="http://www.impuso2015.tk/productos/<?php echo str_replace(' ','-', $subcategoria->getNombre())?>/1">
                                     <?php echo $subcategoria->getNombre() ?>
                                 </a>
                             </li>
@@ -41,8 +41,7 @@
         if(!isset($_SESSION['usuario'])){//si no hay sesión de usuario iniciada
         ?>
         <li><a href="http://www.impuso2015.tk/carrito">Carrito</a></li>
-        <li><a href="http://www.impuso2015.tk/registro">Registrarse</a></li>
-        <li><a href="http://www.impuso2015.tk/login">Iniciar Sesión</a></li>
+       
         <?php }else{//sí hay sesión de usuario iniciada 
           
            $idusuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])->getIdusuario();
@@ -55,11 +54,7 @@
         
         <li><a href="http://www.impuso2015.tk/carrito">Carrito(<?php echo  $totalarticulos ?>)</a></li>
         
-        <li>
-            <a href="http://www.impuso2015.tk/actualizar">!Bienvenido! <?php echo $_SESSION['usuario'] ?></a>
-                </li>
-        
-        <li><a href="http://www.impuso2015.tk/logout">Cerrar Sesión</a></li>
+       
         <?php } ?>
     </ul>
 </div>

@@ -11,8 +11,9 @@
   <link rel="stylesheet" type="text/css" href="http://www.impuso2015.tk/css/style.css" media="screen" />
   <link rel="stylesheet" type="text/css" href="http://www.impuso2015.tk/css/responsive_menu_style.css" media="screen" />
    <script src="http://code.jquery.com/jquery-2.1.4.min.js" type="text/javascript"></script>
+   <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
    <script  src="http://www.impuso2015.tk/scripts/responsive_menu_script.js"></script>
-   <script  async src="http://www.impuso2015.tk/scripts/scripts.js"></script>
+   <script   src="http://www.impuso2015.tk/scripts/scripts.js"></script>
    
   <title>Tienda</title>
    
@@ -40,13 +41,16 @@
                 </form>
             </div>
             <div id="acceso">
-                <table>
-                    <tr>
-                        <td>
-                            <input type="button">
-                        </td>
-                    </tr>
-                </table>
+               <div id="content">
+                  
+			<?php
+                        if (!isset($_SESSION['usuario']))
+                        {
+                            require_once __DIR__.'/menu_login.php';
+                        }else
+                             require_once __DIR__.'/menu_usuario.php';
+                        ?>
+		</div>
             </div>
         </div>
     </header>

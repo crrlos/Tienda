@@ -40,6 +40,14 @@ switch ($opcion){
     case 'actualizar':
         include('./paginas/usuario.php');
         break;
+    case 'recuperar':
+        include('./paginas/recuperar_clave.php');
+        break;
+    case 'cambiar':
+        include('./paginas/cambio_clave.php');
+        break;
+    case 'detalle':
+        break;
     default:
         include('./paginas/busqueda.php');
        

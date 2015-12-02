@@ -12,3 +12,11 @@ function recargarMunicipios(val){
 		 }
 	});
 }
+$(document).ready(function() {
+	$('#showlogin').click(function() {
+	  $('#loginpanel').slideToggle('fast', function() {
+		  $("#triangle_down").toggle(); 
+		  $("#triangle_up").toggle();
+	  });
+	});
+ });
