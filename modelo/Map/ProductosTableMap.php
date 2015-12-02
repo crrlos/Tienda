@@ -184,13 +184,6 @@ class ProductosTableMap extends TableMap
     1 => ':idsubcategoria',
   ),
 ), null, null, null, false);
-        $this->addRelation('Detallecompras', '\\Detallecompras', RelationMap::ONE_TO_MANY, array (
-  0 =>
-  array (
-    0 => ':idproducto',
-    1 => ':idproducto',
-  ),
-), null, null, 'Detallecomprass', false);
         $this->addRelation('Detallepedidos', '\\Detallepedidos', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
@@ -198,13 +191,6 @@ class ProductosTableMap extends TableMap
     1 => ':idproducto',
   ),
 ), null, null, 'Detallepedidoss', false);
-        $this->addRelation('Inventario', '\\Inventario', RelationMap::ONE_TO_MANY, array (
-  0 =>
-  array (
-    0 => ':idproducto',
-    1 => ':idproducto',
-  ),
-), null, null, 'Inventarios', false);
     } // buildRelations()
 
     /**

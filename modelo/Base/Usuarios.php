@@ -2,12 +2,8 @@
 
 namespace Base;
 
-use \Departamentos as ChildDepartamentos;
-use \DepartamentosQuery as ChildDepartamentosQuery;
 use \Hash as ChildHash;
 use \HashQuery as ChildHashQuery;
-use \Municipios as ChildMunicipios;
-use \MunicipiosQuery as ChildMunicipiosQuery;
 use \Pedidos as ChildPedidos;
 use \PedidosQuery as ChildPedidosQuery;
 use \Roles as ChildRoles;
@@ -123,20 +119,6 @@ abstract class Usuarios implements ActiveRecordInterface
     protected $direccion;
 
     /**
-     * The value for the iddepartamento field.
-     *
-     * @var        int
-     */
-    protected $iddepartamento;
-
-    /**
-     * The value for the idmunicipio field.
-     *
-     * @var        int
-     */
-    protected $idmunicipio;
-
-    /**
      * The value for the fecharegistro field.
      *
      * @var        \DateTime
@@ -156,16 +138,6 @@ abstract class Usuarios implements ActiveRecordInterface
      * @var        string
      */
     protected $clave;
-
-    /**
-     * @var        ChildDepartamentos
-     */
-    protected $aDepartamentos;
-
-    /**
-     * @var        ChildMunicipios
-     */
-    protected $aMunicipios;
 
     /**
      * @var        ChildRoles
@@ -492,26 +464,6 @@ abstract class Usuarios implements ActiveRecordInterface
     }
 
     /**
-     * Get the [iddepartamento] column value.
-     *
-     * @return int
-     */
-    public function getIddepartamento()
-    {
-        return $this->iddepartamento;
-    }
-
-    /**
-     * Get the [idmunicipio] column value.
-     *
-     * @return int
-     */
-    public function getIdmunicipio()
-    {
-        return $this->idmunicipio;
-    }
-
-    /**
      * Get the [optionally formatted] temporal [fecharegistro] column value.
      *
      *
@@ -692,54 +644,6 @@ abstract class Usuarios implements ActiveRecordInterface
     } // setDireccion()
 
     /**
-     * Set the value of [iddepartamento] column.
-     *
-     * @param int $v new value
-     * @return $this|\Usuarios The current object (for fluent API support)
-     */
-    public function setIddepartamento($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->iddepartamento !== $v) {
-            $this->iddepartamento = $v;
-            $this->modifiedColumns[UsuariosTableMap::COL_IDDEPARTAMENTO] = true;
-        }
-
-        if ($this->aDepartamentos !== null && $this->aDepartamentos->getIddepartamento() !== $v) {
-            $this->aDepartamentos = null;
-        }
-
-        return $this;
-    } // setIddepartamento()
-
-    /**
-     * Set the value of [idmunicipio] column.
-     *
-     * @param int $v new value
-     * @return $this|\Usuarios The current object (for fluent API support)
-     */
-    public function setIdmunicipio($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->idmunicipio !== $v) {
-            $this->idmunicipio = $v;
-            $this->modifiedColumns[UsuariosTableMap::COL_IDMUNICIPIO] = true;
-        }
-
-        if ($this->aMunicipios !== null && $this->aMunicipios->getIdmunicipio() !== $v) {
-            $this->aMunicipios = null;
-        }
-
-        return $this;
-    } // setIdmunicipio()
-
-    /**
      * Sets the value of [fecharegistro] column to a normalized version of the date/time value specified.
      *
      * @param  mixed $v string, integer (timestamp), or \DateTime value.
@@ -860,22 +764,16 @@ abstract class Usuarios implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : UsuariosTableMap::translateFieldName('Direccion', TableMap::TYPE_PHPNAME, $indexType)];
             $this->direccion = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : UsuariosTableMap::translateFieldName('Iddepartamento', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->iddepartamento = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : UsuariosTableMap::translateFieldName('Idmunicipio', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->idmunicipio = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 9 + $startcol : UsuariosTableMap::translateFieldName('Fecharegistro', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : UsuariosTableMap::translateFieldName('Fecharegistro', TableMap::TYPE_PHPNAME, $indexType)];
             if ($col === '0000-00-00') {
                 $col = null;
             }
             $this->fecharegistro = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 10 + $startcol : UsuariosTableMap::translateFieldName('Idrol', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : UsuariosTableMap::translateFieldName('Idrol', TableMap::TYPE_PHPNAME, $indexType)];
             $this->idrol = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 11 + $startcol : UsuariosTableMap::translateFieldName('Clave', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 9 + $startcol : UsuariosTableMap::translateFieldName('Clave', TableMap::TYPE_PHPNAME, $indexType)];
             $this->clave = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
@@ -885,7 +783,7 @@ abstract class Usuarios implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 12; // 12 = UsuariosTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 10; // 10 = UsuariosTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Usuarios'), 0, $e);
@@ -907,12 +805,6 @@ abstract class Usuarios implements ActiveRecordInterface
      */
     public function ensureConsistency()
     {
-        if ($this->aDepartamentos !== null && $this->iddepartamento !== $this->aDepartamentos->getIddepartamento()) {
-            $this->aDepartamentos = null;
-        }
-        if ($this->aMunicipios !== null && $this->idmunicipio !== $this->aMunicipios->getIdmunicipio()) {
-            $this->aMunicipios = null;
-        }
         if ($this->aRoles !== null && $this->idrol !== $this->aRoles->getIdrol()) {
             $this->aRoles = null;
         }
@@ -955,8 +847,6 @@ abstract class Usuarios implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aDepartamentos = null;
-            $this->aMunicipios = null;
             $this->aRoles = null;
             $this->collHashes = null;
 
@@ -1066,20 +956,6 @@ abstract class Usuarios implements ActiveRecordInterface
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aDepartamentos !== null) {
-                if ($this->aDepartamentos->isModified() || $this->aDepartamentos->isNew()) {
-                    $affectedRows += $this->aDepartamentos->save($con);
-                }
-                $this->setDepartamentos($this->aDepartamentos);
-            }
-
-            if ($this->aMunicipios !== null) {
-                if ($this->aMunicipios->isModified() || $this->aMunicipios->isNew()) {
-                    $affectedRows += $this->aMunicipios->save($con);
-                }
-                $this->setMunicipios($this->aMunicipios);
-            }
-
             if ($this->aRoles !== null) {
                 if ($this->aRoles->isModified() || $this->aRoles->isNew()) {
                     $affectedRows += $this->aRoles->save($con);
@@ -1181,12 +1057,6 @@ abstract class Usuarios implements ActiveRecordInterface
         if ($this->isColumnModified(UsuariosTableMap::COL_DIRECCION)) {
             $modifiedColumns[':p' . $index++]  = 'direccion';
         }
-        if ($this->isColumnModified(UsuariosTableMap::COL_IDDEPARTAMENTO)) {
-            $modifiedColumns[':p' . $index++]  = 'iddepartamento';
-        }
-        if ($this->isColumnModified(UsuariosTableMap::COL_IDMUNICIPIO)) {
-            $modifiedColumns[':p' . $index++]  = 'idmunicipio';
-        }
         if ($this->isColumnModified(UsuariosTableMap::COL_FECHAREGISTRO)) {
             $modifiedColumns[':p' . $index++]  = 'fecharegistro';
         }
@@ -1227,12 +1097,6 @@ abstract class Usuarios implements ActiveRecordInterface
                         break;
                     case 'direccion':
                         $stmt->bindValue($identifier, $this->direccion, PDO::PARAM_STR);
-                        break;
-                    case 'iddepartamento':
-                        $stmt->bindValue($identifier, $this->iddepartamento, PDO::PARAM_INT);
-                        break;
-                    case 'idmunicipio':
-                        $stmt->bindValue($identifier, $this->idmunicipio, PDO::PARAM_INT);
                         break;
                     case 'fecharegistro':
                         $stmt->bindValue($identifier, $this->fecharegistro ? $this->fecharegistro->format("Y-m-d H:i:s") : null, PDO::PARAM_STR);
@@ -1327,18 +1191,12 @@ abstract class Usuarios implements ActiveRecordInterface
                 return $this->getDireccion();
                 break;
             case 7:
-                return $this->getIddepartamento();
-                break;
-            case 8:
-                return $this->getIdmunicipio();
-                break;
-            case 9:
                 return $this->getFecharegistro();
                 break;
-            case 10:
+            case 8:
                 return $this->getIdrol();
                 break;
-            case 11:
+            case 9:
                 return $this->getClave();
                 break;
             default:
@@ -1378,18 +1236,16 @@ abstract class Usuarios implements ActiveRecordInterface
             $keys[4] => $this->getTelefono(),
             $keys[5] => $this->getEmail(),
             $keys[6] => $this->getDireccion(),
-            $keys[7] => $this->getIddepartamento(),
-            $keys[8] => $this->getIdmunicipio(),
-            $keys[9] => $this->getFecharegistro(),
-            $keys[10] => $this->getIdrol(),
-            $keys[11] => $this->getClave(),
+            $keys[7] => $this->getFecharegistro(),
+            $keys[8] => $this->getIdrol(),
+            $keys[9] => $this->getClave(),
         );
 
         $utc = new \DateTimeZone('utc');
-        if ($result[$keys[9]] instanceof \DateTime) {
+        if ($result[$keys[7]] instanceof \DateTime) {
             // When changing timezone we don't want to change existing instances
-            $dateTime = clone $result[$keys[9]];
-            $result[$keys[9]] = $dateTime->setTimezone($utc)->format('Y-m-d\TH:i:s\Z');
+            $dateTime = clone $result[$keys[7]];
+            $result[$keys[7]] = $dateTime->setTimezone($utc)->format('Y-m-d\TH:i:s\Z');
         }
 
         $virtualColumns = $this->virtualColumns;
@@ -1398,36 +1254,6 @@ abstract class Usuarios implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->aDepartamentos) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'departamentos';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'departamentos';
-                        break;
-                    default:
-                        $key = 'Departamentos';
-                }
-
-                $result[$key] = $this->aDepartamentos->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
-            if (null !== $this->aMunicipios) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'municipios';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'municipios';
-                        break;
-                    default:
-                        $key = 'Municipios';
-                }
-
-                $result[$key] = $this->aMunicipios->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
             if (null !== $this->aRoles) {
 
                 switch ($keyType) {
@@ -1529,18 +1355,12 @@ abstract class Usuarios implements ActiveRecordInterface
                 $this->setDireccion($value);
                 break;
             case 7:
-                $this->setIddepartamento($value);
-                break;
-            case 8:
-                $this->setIdmunicipio($value);
-                break;
-            case 9:
                 $this->setFecharegistro($value);
                 break;
-            case 10:
+            case 8:
                 $this->setIdrol($value);
                 break;
-            case 11:
+            case 9:
                 $this->setClave($value);
                 break;
         } // switch()
@@ -1591,19 +1411,13 @@ abstract class Usuarios implements ActiveRecordInterface
             $this->setDireccion($arr[$keys[6]]);
         }
         if (array_key_exists($keys[7], $arr)) {
-            $this->setIddepartamento($arr[$keys[7]]);
+            $this->setFecharegistro($arr[$keys[7]]);
         }
         if (array_key_exists($keys[8], $arr)) {
-            $this->setIdmunicipio($arr[$keys[8]]);
+            $this->setIdrol($arr[$keys[8]]);
         }
         if (array_key_exists($keys[9], $arr)) {
-            $this->setFecharegistro($arr[$keys[9]]);
-        }
-        if (array_key_exists($keys[10], $arr)) {
-            $this->setIdrol($arr[$keys[10]]);
-        }
-        if (array_key_exists($keys[11], $arr)) {
-            $this->setClave($arr[$keys[11]]);
+            $this->setClave($arr[$keys[9]]);
         }
     }
 
@@ -1666,12 +1480,6 @@ abstract class Usuarios implements ActiveRecordInterface
         }
         if ($this->isColumnModified(UsuariosTableMap::COL_DIRECCION)) {
             $criteria->add(UsuariosTableMap::COL_DIRECCION, $this->direccion);
-        }
-        if ($this->isColumnModified(UsuariosTableMap::COL_IDDEPARTAMENTO)) {
-            $criteria->add(UsuariosTableMap::COL_IDDEPARTAMENTO, $this->iddepartamento);
-        }
-        if ($this->isColumnModified(UsuariosTableMap::COL_IDMUNICIPIO)) {
-            $criteria->add(UsuariosTableMap::COL_IDMUNICIPIO, $this->idmunicipio);
         }
         if ($this->isColumnModified(UsuariosTableMap::COL_FECHAREGISTRO)) {
             $criteria->add(UsuariosTableMap::COL_FECHAREGISTRO, $this->fecharegistro);
@@ -1774,8 +1582,6 @@ abstract class Usuarios implements ActiveRecordInterface
         $copyObj->setTelefono($this->getTelefono());
         $copyObj->setEmail($this->getEmail());
         $copyObj->setDireccion($this->getDireccion());
-        $copyObj->setIddepartamento($this->getIddepartamento());
-        $copyObj->setIdmunicipio($this->getIdmunicipio());
         $copyObj->setFecharegistro($this->getFecharegistro());
         $copyObj->setIdrol($this->getIdrol());
         $copyObj->setClave($this->getClave());
@@ -1825,108 +1631,6 @@ abstract class Usuarios implements ActiveRecordInterface
         $this->copyInto($copyObj, $deepCopy);
 
         return $copyObj;
-    }
-
-    /**
-     * Declares an association between this object and a ChildDepartamentos object.
-     *
-     * @param  ChildDepartamentos $v
-     * @return $this|\Usuarios The current object (for fluent API support)
-     * @throws PropelException
-     */
-    public function setDepartamentos(ChildDepartamentos $v = null)
-    {
-        if ($v === null) {
-            $this->setIddepartamento(NULL);
-        } else {
-            $this->setIddepartamento($v->getIddepartamento());
-        }
-
-        $this->aDepartamentos = $v;
-
-        // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the ChildDepartamentos object, it will not be re-added.
-        if ($v !== null) {
-            $v->addUsuarios($this);
-        }
-
-
-        return $this;
-    }
-
-
-    /**
-     * Get the associated ChildDepartamentos object
-     *
-     * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildDepartamentos The associated ChildDepartamentos object.
-     * @throws PropelException
-     */
-    public function getDepartamentos(ConnectionInterface $con = null)
-    {
-        if ($this->aDepartamentos === null && ($this->iddepartamento !== null)) {
-            $this->aDepartamentos = ChildDepartamentosQuery::create()->findPk($this->iddepartamento, $con);
-            /* The following can be used additionally to
-                guarantee the related object contains a reference
-                to this object.  This level of coupling may, however, be
-                undesirable since it could result in an only partially populated collection
-                in the referenced object.
-                $this->aDepartamentos->addUsuarioss($this);
-             */
-        }
-
-        return $this->aDepartamentos;
-    }
-
-    /**
-     * Declares an association between this object and a ChildMunicipios object.
-     *
-     * @param  ChildMunicipios $v
-     * @return $this|\Usuarios The current object (for fluent API support)
-     * @throws PropelException
-     */
-    public function setMunicipios(ChildMunicipios $v = null)
-    {
-        if ($v === null) {
-            $this->setIdmunicipio(NULL);
-        } else {
-            $this->setIdmunicipio($v->getIdmunicipio());
-        }
-
-        $this->aMunicipios = $v;
-
-        // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the ChildMunicipios object, it will not be re-added.
-        if ($v !== null) {
-            $v->addUsuarios($this);
-        }
-
-
-        return $this;
-    }
-
-
-    /**
-     * Get the associated ChildMunicipios object
-     *
-     * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildMunicipios The associated ChildMunicipios object.
-     * @throws PropelException
-     */
-    public function getMunicipios(ConnectionInterface $con = null)
-    {
-        if ($this->aMunicipios === null && ($this->idmunicipio !== null)) {
-            $this->aMunicipios = ChildMunicipiosQuery::create()->findPk($this->idmunicipio, $con);
-            /* The following can be used additionally to
-                guarantee the related object contains a reference
-                to this object.  This level of coupling may, however, be
-                undesirable since it could result in an only partially populated collection
-                in the referenced object.
-                $this->aMunicipios->addUsuarioss($this);
-             */
-        }
-
-        return $this->aMunicipios;
     }
 
     /**
@@ -2442,12 +2146,6 @@ abstract class Usuarios implements ActiveRecordInterface
      */
     public function clear()
     {
-        if (null !== $this->aDepartamentos) {
-            $this->aDepartamentos->removeUsuarios($this);
-        }
-        if (null !== $this->aMunicipios) {
-            $this->aMunicipios->removeUsuarios($this);
-        }
         if (null !== $this->aRoles) {
             $this->aRoles->removeUsuarios($this);
         }
@@ -2458,8 +2156,6 @@ abstract class Usuarios implements ActiveRecordInterface
         $this->telefono = null;
         $this->email = null;
         $this->direccion = null;
-        $this->iddepartamento = null;
-        $this->idmunicipio = null;
         $this->fecharegistro = null;
         $this->idrol = null;
         $this->clave = null;
@@ -2495,8 +2191,6 @@ abstract class Usuarios implements ActiveRecordInterface
 
         $this->collHashes = null;
         $this->collPedidoss = null;
-        $this->aDepartamentos = null;
-        $this->aMunicipios = null;
         $this->aRoles = null;
     }
 

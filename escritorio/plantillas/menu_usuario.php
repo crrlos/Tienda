@@ -6,8 +6,8 @@
     </a>
 
     <div id="loginpanel" style="display:none;">
-        <a>Historial de compras</a> <br><hr>
-        <a>Actualizar mi información</a> <br><hr>
+        <a href="http://www.impuso2015.tk/history">Historial de compras</a> <br><hr>
+        <a href="http://www.impuso2015.tk/update">Actualizar mi información</a> <br><hr>
         <a href="http://www.impuso2015.tk/logout">Cerrar Sesión </a><br><hr>
         
             

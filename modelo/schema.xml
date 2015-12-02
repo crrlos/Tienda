@@ -7,46 +7,9 @@
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
   </table>
-  <table name="compras" idMethod="native" phpName="Compras">
-    <column name="idcompra" phpName="Idcompra" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="fecha" phpName="Fecha" type="DATE"/>
-    <column name="detalle" phpName="Detalle" type="VARCHAR" size="500"/>
-    <vendor type="mysql">
-      <parameter name="Engine" value="InnoDB"/>
-    </vendor>
-  </table>
-  <table name="departamentos" idMethod="native" phpName="Departamentos">
-    <column name="iddepartamento" phpName="Iddepartamento" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="nombre" phpName="Nombre" type="VARCHAR" size="45"/>
-    <vendor type="mysql">
-      <parameter name="Engine" value="InnoDB"/>
-    </vendor>
-  </table>
   <table name="descuentos" idMethod="native" phpName="Descuentos">
     <column name="iddescuento" phpName="Iddescuento" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="valor" phpName="Valor" type="INTEGER" size="10"/>
-    <vendor type="mysql">
-      <parameter name="Engine" value="InnoDB"/>
-    </vendor>
-  </table>
-  <table name="detallecompras" idMethod="native" phpName="Detallecompras">
-    <column name="iddetallecompra" phpName="Iddetallecompra" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="idcompra" phpName="Idcompra" type="INTEGER"/>
-    <column name="idproducto" phpName="Idproducto" type="INTEGER"/>
-    <column name="cantidad" phpName="Cantidad" type="INTEGER"/>
-    <column name="preciocompra" phpName="Preciocompra" type="DOUBLE" size="7" scale="2"/>
-    <foreign-key foreignTable="compras" name="fk_detallecompras_compra">
-      <reference local="idcompra" foreign="idcompra"/>
-    </foreign-key>
-    <foreign-key foreignTable="productos" name="fk_detallecompras_producto">
-      <reference local="idproducto" foreign="idproducto"/>
-    </foreign-key>
-    <index name="fk_compra_idx">
-      <index-column name="idcompra"/>
-    </index>
-    <index name="fk_producto_idx">
-      <index-column name="idproducto"/>
-    </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
@@ -91,41 +54,6 @@
     <column name="idimagen" phpName="Idimagen" type="INTEGER" size="10" sqlType="int(10) unsigned" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="idproducto" phpName="Idproducto" type="INTEGER" size="10" sqlType="int(10) unsigned" required="true"/>
     <column name="url" phpName="Url" type="VARCHAR" size="200" required="true"/>
-    <vendor type="mysql">
-      <parameter name="Engine" value="InnoDB"/>
-    </vendor>
-  </table>
-  <table name="inventario" idMethod="native" phpName="Inventario">
-    <column name="idinventario" phpName="Idinventario" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="idtienda" phpName="Idtienda" type="INTEGER"/>
-    <column name="idproducto" phpName="Idproducto" type="INTEGER"/>
-    <column name="cantidad" phpName="Cantidad" type="INTEGER"/>
-    <foreign-key foreignTable="productos" name="fk_productos">
-      <reference local="idproducto" foreign="idproducto"/>
-    </foreign-key>
-    <foreign-key foreignTable="tienda" name="fk_tienda">
-      <reference local="idtienda" foreign="idtienda"/>
-    </foreign-key>
-    <index name="fk_tienda_idx">
-      <index-column name="idtienda"/>
-    </index>
-    <index name="fk_productos_idx">
-      <index-column name="idproducto"/>
-    </index>
-    <vendor type="mysql">
-      <parameter name="Engine" value="InnoDB"/>
-    </vendor>
-  </table>
-  <table name="municipios" idMethod="native" phpName="Municipios">
-    <column name="idmunicipio" phpName="Idmunicipio" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="iddepartamento" phpName="Iddepartamento" type="INTEGER"/>
-    <column name="nombre" phpName="Nombre" type="VARCHAR" size="45"/>
-    <foreign-key foreignTable="departamentos" name="fk_departamentos">
-      <reference local="iddepartamento" foreign="iddepartamento"/>
-    </foreign-key>
-    <index name="fk_departamentos_idx">
-      <index-column name="iddepartamento"/>
-    </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
@@ -189,16 +117,6 @@
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
   </table>
-  <table name="tienda" idMethod="native" phpName="Tienda">
-    <column name="idtienda" phpName="Idtienda" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
-    <column name="direccion" phpName="Direccion" type="VARCHAR" size="45"/>
-    <column name="iddepartamento" phpName="Iddepartamento" type="INTEGER"/>
-    <column name="idmunicipio" phpName="Idmunicipio" type="INTEGER"/>
-    <column name="telefono" phpName="Telefono" type="VARCHAR" size="45"/>
-    <vendor type="mysql">
-      <parameter name="Engine" value="InnoDB"/>
-    </vendor>
-  </table>
   <table name="usuarios" idMethod="native" phpName="Usuarios">
     <column name="idusuario" phpName="Idusuario" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="nombreusuario" phpName="Nombreusuario" type="VARCHAR" size="45"/>
@@ -207,28 +125,14 @@
     <column name="telefono" phpName="Telefono" type="VARCHAR" size="45"/>
     <column name="email" phpName="Email" type="VARCHAR" size="100"/>
     <column name="direccion" phpName="Direccion" type="VARCHAR" size="45"/>
-    <column name="iddepartamento" phpName="Iddepartamento" type="INTEGER"/>
-    <column name="idmunicipio" phpName="Idmunicipio" type="INTEGER"/>
     <column name="fecharegistro" phpName="Fecharegistro" type="DATE"/>
     <column name="idrol" phpName="Idrol" type="INTEGER"/>
     <column name="clave" phpName="Clave" type="VARCHAR" size="300"/>
-    <foreign-key foreignTable="departamentos" name="fk_departamento">
-      <reference local="iddepartamento" foreign="iddepartamento"/>
-    </foreign-key>
-    <foreign-key foreignTable="municipios" name="fk_municipio">
-      <reference local="idmunicipio" foreign="idmunicipio"/>
-    </foreign-key>
     <foreign-key foreignTable="roles" name="fk_roles">
       <reference local="idrol" foreign="idrol"/>
     </foreign-key>
     <index name="fk_roles_idx">
       <index-column name="idrol"/>
-    </index>
-    <index name="fk_departamento_idx">
-      <index-column name="iddepartamento"/>
-    </index>
-    <index name="fk_municipio_idx">
-      <index-column name="idmunicipio"/>
     </index>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>

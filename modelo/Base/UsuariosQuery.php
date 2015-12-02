@@ -27,8 +27,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUsuariosQuery orderByTelefono($order = Criteria::ASC) Order by the telefono column
  * @method     ChildUsuariosQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method     ChildUsuariosQuery orderByDireccion($order = Criteria::ASC) Order by the direccion column
- * @method     ChildUsuariosQuery orderByIddepartamento($order = Criteria::ASC) Order by the iddepartamento column
- * @method     ChildUsuariosQuery orderByIdmunicipio($order = Criteria::ASC) Order by the idmunicipio column
  * @method     ChildUsuariosQuery orderByFecharegistro($order = Criteria::ASC) Order by the fecharegistro column
  * @method     ChildUsuariosQuery orderByIdrol($order = Criteria::ASC) Order by the idrol column
  * @method     ChildUsuariosQuery orderByClave($order = Criteria::ASC) Order by the clave column
@@ -40,8 +38,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUsuariosQuery groupByTelefono() Group by the telefono column
  * @method     ChildUsuariosQuery groupByEmail() Group by the email column
  * @method     ChildUsuariosQuery groupByDireccion() Group by the direccion column
- * @method     ChildUsuariosQuery groupByIddepartamento() Group by the iddepartamento column
- * @method     ChildUsuariosQuery groupByIdmunicipio() Group by the idmunicipio column
  * @method     ChildUsuariosQuery groupByFecharegistro() Group by the fecharegistro column
  * @method     ChildUsuariosQuery groupByIdrol() Group by the idrol column
  * @method     ChildUsuariosQuery groupByClave() Group by the clave column
@@ -53,26 +49,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUsuariosQuery leftJoinWith($relation) Adds a LEFT JOIN clause and with to the query
  * @method     ChildUsuariosQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildUsuariosQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
- *
- * @method     ChildUsuariosQuery leftJoinDepartamentos($relationAlias = null) Adds a LEFT JOIN clause to the query using the Departamentos relation
- * @method     ChildUsuariosQuery rightJoinDepartamentos($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Departamentos relation
- * @method     ChildUsuariosQuery innerJoinDepartamentos($relationAlias = null) Adds a INNER JOIN clause to the query using the Departamentos relation
- *
- * @method     ChildUsuariosQuery joinWithDepartamentos($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Departamentos relation
- *
- * @method     ChildUsuariosQuery leftJoinWithDepartamentos() Adds a LEFT JOIN clause and with to the query using the Departamentos relation
- * @method     ChildUsuariosQuery rightJoinWithDepartamentos() Adds a RIGHT JOIN clause and with to the query using the Departamentos relation
- * @method     ChildUsuariosQuery innerJoinWithDepartamentos() Adds a INNER JOIN clause and with to the query using the Departamentos relation
- *
- * @method     ChildUsuariosQuery leftJoinMunicipios($relationAlias = null) Adds a LEFT JOIN clause to the query using the Municipios relation
- * @method     ChildUsuariosQuery rightJoinMunicipios($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Municipios relation
- * @method     ChildUsuariosQuery innerJoinMunicipios($relationAlias = null) Adds a INNER JOIN clause to the query using the Municipios relation
- *
- * @method     ChildUsuariosQuery joinWithMunicipios($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Municipios relation
- *
- * @method     ChildUsuariosQuery leftJoinWithMunicipios() Adds a LEFT JOIN clause and with to the query using the Municipios relation
- * @method     ChildUsuariosQuery rightJoinWithMunicipios() Adds a RIGHT JOIN clause and with to the query using the Municipios relation
- * @method     ChildUsuariosQuery innerJoinWithMunicipios() Adds a INNER JOIN clause and with to the query using the Municipios relation
  *
  * @method     ChildUsuariosQuery leftJoinRoles($relationAlias = null) Adds a LEFT JOIN clause to the query using the Roles relation
  * @method     ChildUsuariosQuery rightJoinRoles($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Roles relation
@@ -104,7 +80,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUsuariosQuery rightJoinWithPedidos() Adds a RIGHT JOIN clause and with to the query using the Pedidos relation
  * @method     ChildUsuariosQuery innerJoinWithPedidos() Adds a INNER JOIN clause and with to the query using the Pedidos relation
  *
- * @method     \DepartamentosQuery|\MunicipiosQuery|\RolesQuery|\HashQuery|\PedidosQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \RolesQuery|\HashQuery|\PedidosQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildUsuarios findOne(ConnectionInterface $con = null) Return the first ChildUsuarios matching the query
  * @method     ChildUsuarios findOneOrCreate(ConnectionInterface $con = null) Return the first ChildUsuarios matching the query, or a new ChildUsuarios object populated from the query conditions when no match is found
@@ -116,8 +92,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUsuarios findOneByTelefono(string $telefono) Return the first ChildUsuarios filtered by the telefono column
  * @method     ChildUsuarios findOneByEmail(string $email) Return the first ChildUsuarios filtered by the email column
  * @method     ChildUsuarios findOneByDireccion(string $direccion) Return the first ChildUsuarios filtered by the direccion column
- * @method     ChildUsuarios findOneByIddepartamento(int $iddepartamento) Return the first ChildUsuarios filtered by the iddepartamento column
- * @method     ChildUsuarios findOneByIdmunicipio(int $idmunicipio) Return the first ChildUsuarios filtered by the idmunicipio column
  * @method     ChildUsuarios findOneByFecharegistro(string $fecharegistro) Return the first ChildUsuarios filtered by the fecharegistro column
  * @method     ChildUsuarios findOneByIdrol(int $idrol) Return the first ChildUsuarios filtered by the idrol column
  * @method     ChildUsuarios findOneByClave(string $clave) Return the first ChildUsuarios filtered by the clave column *
@@ -132,8 +106,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUsuarios requireOneByTelefono(string $telefono) Return the first ChildUsuarios filtered by the telefono column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUsuarios requireOneByEmail(string $email) Return the first ChildUsuarios filtered by the email column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUsuarios requireOneByDireccion(string $direccion) Return the first ChildUsuarios filtered by the direccion column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildUsuarios requireOneByIddepartamento(int $iddepartamento) Return the first ChildUsuarios filtered by the iddepartamento column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildUsuarios requireOneByIdmunicipio(int $idmunicipio) Return the first ChildUsuarios filtered by the idmunicipio column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUsuarios requireOneByFecharegistro(string $fecharegistro) Return the first ChildUsuarios filtered by the fecharegistro column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUsuarios requireOneByIdrol(int $idrol) Return the first ChildUsuarios filtered by the idrol column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildUsuarios requireOneByClave(string $clave) Return the first ChildUsuarios filtered by the clave column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -146,8 +118,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildUsuarios[]|ObjectCollection findByTelefono(string $telefono) Return ChildUsuarios objects filtered by the telefono column
  * @method     ChildUsuarios[]|ObjectCollection findByEmail(string $email) Return ChildUsuarios objects filtered by the email column
  * @method     ChildUsuarios[]|ObjectCollection findByDireccion(string $direccion) Return ChildUsuarios objects filtered by the direccion column
- * @method     ChildUsuarios[]|ObjectCollection findByIddepartamento(int $iddepartamento) Return ChildUsuarios objects filtered by the iddepartamento column
- * @method     ChildUsuarios[]|ObjectCollection findByIdmunicipio(int $idmunicipio) Return ChildUsuarios objects filtered by the idmunicipio column
  * @method     ChildUsuarios[]|ObjectCollection findByFecharegistro(string $fecharegistro) Return ChildUsuarios objects filtered by the fecharegistro column
  * @method     ChildUsuarios[]|ObjectCollection findByIdrol(int $idrol) Return ChildUsuarios objects filtered by the idrol column
  * @method     ChildUsuarios[]|ObjectCollection findByClave(string $clave) Return ChildUsuarios objects filtered by the clave column
@@ -243,7 +213,7 @@ abstract class UsuariosQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT idusuario, nombreusuario, nombres, apellidos, telefono, email, direccion, iddepartamento, idmunicipio, fecharegistro, idrol, clave FROM usuarios WHERE idusuario = :p0';
+        $sql = 'SELECT idusuario, nombreusuario, nombres, apellidos, telefono, email, direccion, fecharegistro, idrol, clave FROM usuarios WHERE idusuario = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -549,92 +519,6 @@ abstract class UsuariosQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the iddepartamento column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByIddepartamento(1234); // WHERE iddepartamento = 1234
-     * $query->filterByIddepartamento(array(12, 34)); // WHERE iddepartamento IN (12, 34)
-     * $query->filterByIddepartamento(array('min' => 12)); // WHERE iddepartamento > 12
-     * </code>
-     *
-     * @see       filterByDepartamentos()
-     *
-     * @param     mixed $iddepartamento The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildUsuariosQuery The current query, for fluid interface
-     */
-    public function filterByIddepartamento($iddepartamento = null, $comparison = null)
-    {
-        if (is_array($iddepartamento)) {
-            $useMinMax = false;
-            if (isset($iddepartamento['min'])) {
-                $this->addUsingAlias(UsuariosTableMap::COL_IDDEPARTAMENTO, $iddepartamento['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($iddepartamento['max'])) {
-                $this->addUsingAlias(UsuariosTableMap::COL_IDDEPARTAMENTO, $iddepartamento['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        return $this->addUsingAlias(UsuariosTableMap::COL_IDDEPARTAMENTO, $iddepartamento, $comparison);
-    }
-
-    /**
-     * Filter the query on the idmunicipio column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByIdmunicipio(1234); // WHERE idmunicipio = 1234
-     * $query->filterByIdmunicipio(array(12, 34)); // WHERE idmunicipio IN (12, 34)
-     * $query->filterByIdmunicipio(array('min' => 12)); // WHERE idmunicipio > 12
-     * </code>
-     *
-     * @see       filterByMunicipios()
-     *
-     * @param     mixed $idmunicipio The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildUsuariosQuery The current query, for fluid interface
-     */
-    public function filterByIdmunicipio($idmunicipio = null, $comparison = null)
-    {
-        if (is_array($idmunicipio)) {
-            $useMinMax = false;
-            if (isset($idmunicipio['min'])) {
-                $this->addUsingAlias(UsuariosTableMap::COL_IDMUNICIPIO, $idmunicipio['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($idmunicipio['max'])) {
-                $this->addUsingAlias(UsuariosTableMap::COL_IDMUNICIPIO, $idmunicipio['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        return $this->addUsingAlias(UsuariosTableMap::COL_IDMUNICIPIO, $idmunicipio, $comparison);
-    }
-
-    /**
      * Filter the query on the fecharegistro column
      *
      * Example usage:
@@ -747,160 +631,6 @@ abstract class UsuariosQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(UsuariosTableMap::COL_CLAVE, $clave, $comparison);
-    }
-
-    /**
-     * Filter the query by a related \Departamentos object
-     *
-     * @param \Departamentos|ObjectCollection $departamentos The related object(s) to use as filter
-     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @throws \Propel\Runtime\Exception\PropelException
-     *
-     * @return ChildUsuariosQuery The current query, for fluid interface
-     */
-    public function filterByDepartamentos($departamentos, $comparison = null)
-    {
-        if ($departamentos instanceof \Departamentos) {
-            return $this
-                ->addUsingAlias(UsuariosTableMap::COL_IDDEPARTAMENTO, $departamentos->getIddepartamento(), $comparison);
-        } elseif ($departamentos instanceof ObjectCollection) {
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-
-            return $this
-                ->addUsingAlias(UsuariosTableMap::COL_IDDEPARTAMENTO, $departamentos->toKeyValue('PrimaryKey', 'Iddepartamento'), $comparison);
-        } else {
-            throw new PropelException('filterByDepartamentos() only accepts arguments of type \Departamentos or Collection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the Departamentos relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return $this|ChildUsuariosQuery The current query, for fluid interface
-     */
-    public function joinDepartamentos($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Departamentos');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'Departamentos');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the Departamentos relation Departamentos object
-     *
-     * @see useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return \DepartamentosQuery A secondary query class using the current class as primary query
-     */
-    public function useDepartamentosQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        return $this
-            ->joinDepartamentos($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Departamentos', '\DepartamentosQuery');
-    }
-
-    /**
-     * Filter the query by a related \Municipios object
-     *
-     * @param \Municipios|ObjectCollection $municipios The related object(s) to use as filter
-     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @throws \Propel\Runtime\Exception\PropelException
-     *
-     * @return ChildUsuariosQuery The current query, for fluid interface
-     */
-    public function filterByMunicipios($municipios, $comparison = null)
-    {
-        if ($municipios instanceof \Municipios) {
-            return $this
-                ->addUsingAlias(UsuariosTableMap::COL_IDMUNICIPIO, $municipios->getIdmunicipio(), $comparison);
-        } elseif ($municipios instanceof ObjectCollection) {
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-
-            return $this
-                ->addUsingAlias(UsuariosTableMap::COL_IDMUNICIPIO, $municipios->toKeyValue('PrimaryKey', 'Idmunicipio'), $comparison);
-        } else {
-            throw new PropelException('filterByMunicipios() only accepts arguments of type \Municipios or Collection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the Municipios relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return $this|ChildUsuariosQuery The current query, for fluid interface
-     */
-    public function joinMunicipios($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Municipios');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'Municipios');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the Municipios relation Municipios object
-     *
-     * @see useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return \MunicipiosQuery A secondary query class using the current class as primary query
-     */
-    public function useMunicipiosQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        return $this
-            ->joinMunicipios($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Municipios', '\MunicipiosQuery');
     }
 
     /**

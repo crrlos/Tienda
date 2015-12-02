@@ -4,12 +4,8 @@ namespace Base;
 
 use \Descuentos as ChildDescuentos;
 use \DescuentosQuery as ChildDescuentosQuery;
-use \Detallecompras as ChildDetallecompras;
-use \DetallecomprasQuery as ChildDetallecomprasQuery;
 use \Detallepedidos as ChildDetallepedidos;
 use \DetallepedidosQuery as ChildDetallepedidosQuery;
-use \Inventario as ChildInventario;
-use \InventarioQuery as ChildInventarioQuery;
 use \Productos as ChildProductos;
 use \ProductosQuery as ChildProductosQuery;
 use \Subcategorias as ChildSubcategorias;
@@ -131,22 +127,10 @@ abstract class Productos implements ActiveRecordInterface
     protected $aSubcategorias;
 
     /**
-     * @var        ObjectCollection|ChildDetallecompras[] Collection to store aggregation of ChildDetallecompras objects.
-     */
-    protected $collDetallecomprass;
-    protected $collDetallecomprassPartial;
-
-    /**
      * @var        ObjectCollection|ChildDetallepedidos[] Collection to store aggregation of ChildDetallepedidos objects.
      */
     protected $collDetallepedidoss;
     protected $collDetallepedidossPartial;
-
-    /**
-     * @var        ObjectCollection|ChildInventario[] Collection to store aggregation of ChildInventario objects.
-     */
-    protected $collInventarios;
-    protected $collInventariosPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -158,21 +142,9 @@ abstract class Productos implements ActiveRecordInterface
 
     /**
      * An array of objects scheduled for deletion.
-     * @var ObjectCollection|ChildDetallecompras[]
-     */
-    protected $detallecomprassScheduledForDeletion = null;
-
-    /**
-     * An array of objects scheduled for deletion.
      * @var ObjectCollection|ChildDetallepedidos[]
      */
     protected $detallepedidossScheduledForDeletion = null;
-
-    /**
-     * An array of objects scheduled for deletion.
-     * @var ObjectCollection|ChildInventario[]
-     */
-    protected $inventariosScheduledForDeletion = null;
 
     /**
      * Initializes internal state of Base\Productos object.
@@ -742,11 +714,7 @@ abstract class Productos implements ActiveRecordInterface
 
             $this->aDescuentos = null;
             $this->aSubcategorias = null;
-            $this->collDetallecomprass = null;
-
             $this->collDetallepedidoss = null;
-
-            $this->collInventarios = null;
 
         } // if (deep)
     }
@@ -877,24 +845,6 @@ abstract class Productos implements ActiveRecordInterface
                 $this->resetModified();
             }
 
-            if ($this->detallecomprassScheduledForDeletion !== null) {
-                if (!$this->detallecomprassScheduledForDeletion->isEmpty()) {
-                    foreach ($this->detallecomprassScheduledForDeletion as $detallecompras) {
-                        // need to save related object because we set the relation to null
-                        $detallecompras->save($con);
-                    }
-                    $this->detallecomprassScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collDetallecomprass !== null) {
-                foreach ($this->collDetallecomprass as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
-            }
-
             if ($this->detallepedidossScheduledForDeletion !== null) {
                 if (!$this->detallepedidossScheduledForDeletion->isEmpty()) {
                     foreach ($this->detallepedidossScheduledForDeletion as $detallepedidos) {
@@ -907,24 +857,6 @@ abstract class Productos implements ActiveRecordInterface
 
             if ($this->collDetallepedidoss !== null) {
                 foreach ($this->collDetallepedidoss as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
-            }
-
-            if ($this->inventariosScheduledForDeletion !== null) {
-                if (!$this->inventariosScheduledForDeletion->isEmpty()) {
-                    foreach ($this->inventariosScheduledForDeletion as $inventario) {
-                        // need to save related object because we set the relation to null
-                        $inventario->save($con);
-                    }
-                    $this->inventariosScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collInventarios !== null) {
-                foreach ($this->collInventarios as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -1167,21 +1099,6 @@ abstract class Productos implements ActiveRecordInterface
 
                 $result[$key] = $this->aSubcategorias->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
-            if (null !== $this->collDetallecomprass) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'detallecomprass';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'detallecomprass';
-                        break;
-                    default:
-                        $key = 'Detallecomprass';
-                }
-
-                $result[$key] = $this->collDetallecomprass->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-            }
             if (null !== $this->collDetallepedidoss) {
 
                 switch ($keyType) {
@@ -1196,21 +1113,6 @@ abstract class Productos implements ActiveRecordInterface
                 }
 
                 $result[$key] = $this->collDetallepedidoss->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-            }
-            if (null !== $this->collInventarios) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'inventarios';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'inventarios';
-                        break;
-                    default:
-                        $key = 'Inventarios';
-                }
-
-                $result[$key] = $this->collInventarios->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1474,21 +1376,9 @@ abstract class Productos implements ActiveRecordInterface
             // the getter/setter methods for fkey referrer objects.
             $copyObj->setNew(false);
 
-            foreach ($this->getDetallecomprass() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addDetallecompras($relObj->copy($deepCopy));
-                }
-            }
-
             foreach ($this->getDetallepedidoss() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
                     $copyObj->addDetallepedidos($relObj->copy($deepCopy));
-                }
-            }
-
-            foreach ($this->getInventarios() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addInventario($relObj->copy($deepCopy));
                 }
             }
 
@@ -1635,258 +1525,9 @@ abstract class Productos implements ActiveRecordInterface
      */
     public function initRelation($relationName)
     {
-        if ('Detallecompras' == $relationName) {
-            return $this->initDetallecomprass();
-        }
         if ('Detallepedidos' == $relationName) {
             return $this->initDetallepedidoss();
         }
-        if ('Inventario' == $relationName) {
-            return $this->initInventarios();
-        }
-    }
-
-    /**
-     * Clears out the collDetallecomprass collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return void
-     * @see        addDetallecomprass()
-     */
-    public function clearDetallecomprass()
-    {
-        $this->collDetallecomprass = null; // important to set this to NULL since that means it is uninitialized
-    }
-
-    /**
-     * Reset is the collDetallecomprass collection loaded partially.
-     */
-    public function resetPartialDetallecomprass($v = true)
-    {
-        $this->collDetallecomprassPartial = $v;
-    }
-
-    /**
-     * Initializes the collDetallecomprass collection.
-     *
-     * By default this just sets the collDetallecomprass collection to an empty array (like clearcollDetallecomprass());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param      boolean $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initDetallecomprass($overrideExisting = true)
-    {
-        if (null !== $this->collDetallecomprass && !$overrideExisting) {
-            return;
-        }
-        $this->collDetallecomprass = new ObjectCollection();
-        $this->collDetallecomprass->setModel('\Detallecompras');
-    }
-
-    /**
-     * Gets an array of ChildDetallecompras objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this ChildProductos is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param      Criteria $criteria optional Criteria object to narrow the query
-     * @param      ConnectionInterface $con optional connection object
-     * @return ObjectCollection|ChildDetallecompras[] List of ChildDetallecompras objects
-     * @throws PropelException
-     */
-    public function getDetallecomprass(Criteria $criteria = null, ConnectionInterface $con = null)
-    {
-        $partial = $this->collDetallecomprassPartial && !$this->isNew();
-        if (null === $this->collDetallecomprass || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collDetallecomprass) {
-                // return empty collection
-                $this->initDetallecomprass();
-            } else {
-                $collDetallecomprass = ChildDetallecomprasQuery::create(null, $criteria)
-                    ->filterByProductos($this)
-                    ->find($con);
-
-                if (null !== $criteria) {
-                    if (false !== $this->collDetallecomprassPartial && count($collDetallecomprass)) {
-                        $this->initDetallecomprass(false);
-
-                        foreach ($collDetallecomprass as $obj) {
-                            if (false == $this->collDetallecomprass->contains($obj)) {
-                                $this->collDetallecomprass->append($obj);
-                            }
-                        }
-
-                        $this->collDetallecomprassPartial = true;
-                    }
-
-                    return $collDetallecomprass;
-                }
-
-                if ($partial && $this->collDetallecomprass) {
-                    foreach ($this->collDetallecomprass as $obj) {
-                        if ($obj->isNew()) {
-                            $collDetallecomprass[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collDetallecomprass = $collDetallecomprass;
-                $this->collDetallecomprassPartial = false;
-            }
-        }
-
-        return $this->collDetallecomprass;
-    }
-
-    /**
-     * Sets a collection of ChildDetallecompras objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param      Collection $detallecomprass A Propel collection.
-     * @param      ConnectionInterface $con Optional connection object
-     * @return $this|ChildProductos The current object (for fluent API support)
-     */
-    public function setDetallecomprass(Collection $detallecomprass, ConnectionInterface $con = null)
-    {
-        /** @var ChildDetallecompras[] $detallecomprassToDelete */
-        $detallecomprassToDelete = $this->getDetallecomprass(new Criteria(), $con)->diff($detallecomprass);
-
-
-        $this->detallecomprassScheduledForDeletion = $detallecomprassToDelete;
-
-        foreach ($detallecomprassToDelete as $detallecomprasRemoved) {
-            $detallecomprasRemoved->setProductos(null);
-        }
-
-        $this->collDetallecomprass = null;
-        foreach ($detallecomprass as $detallecompras) {
-            $this->addDetallecompras($detallecompras);
-        }
-
-        $this->collDetallecomprass = $detallecomprass;
-        $this->collDetallecomprassPartial = false;
-
-        return $this;
-    }
-
-    /**
-     * Returns the number of related Detallecompras objects.
-     *
-     * @param      Criteria $criteria
-     * @param      boolean $distinct
-     * @param      ConnectionInterface $con
-     * @return int             Count of related Detallecompras objects.
-     * @throws PropelException
-     */
-    public function countDetallecomprass(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
-    {
-        $partial = $this->collDetallecomprassPartial && !$this->isNew();
-        if (null === $this->collDetallecomprass || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collDetallecomprass) {
-                return 0;
-            }
-
-            if ($partial && !$criteria) {
-                return count($this->getDetallecomprass());
-            }
-
-            $query = ChildDetallecomprasQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByProductos($this)
-                ->count($con);
-        }
-
-        return count($this->collDetallecomprass);
-    }
-
-    /**
-     * Method called to associate a ChildDetallecompras object to this object
-     * through the ChildDetallecompras foreign key attribute.
-     *
-     * @param  ChildDetallecompras $l ChildDetallecompras
-     * @return $this|\Productos The current object (for fluent API support)
-     */
-    public function addDetallecompras(ChildDetallecompras $l)
-    {
-        if ($this->collDetallecomprass === null) {
-            $this->initDetallecomprass();
-            $this->collDetallecomprassPartial = true;
-        }
-
-        if (!$this->collDetallecomprass->contains($l)) {
-            $this->doAddDetallecompras($l);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ChildDetallecompras $detallecompras The ChildDetallecompras object to add.
-     */
-    protected function doAddDetallecompras(ChildDetallecompras $detallecompras)
-    {
-        $this->collDetallecomprass[]= $detallecompras;
-        $detallecompras->setProductos($this);
-    }
-
-    /**
-     * @param  ChildDetallecompras $detallecompras The ChildDetallecompras object to remove.
-     * @return $this|ChildProductos The current object (for fluent API support)
-     */
-    public function removeDetallecompras(ChildDetallecompras $detallecompras)
-    {
-        if ($this->getDetallecomprass()->contains($detallecompras)) {
-            $pos = $this->collDetallecomprass->search($detallecompras);
-            $this->collDetallecomprass->remove($pos);
-            if (null === $this->detallecomprassScheduledForDeletion) {
-                $this->detallecomprassScheduledForDeletion = clone $this->collDetallecomprass;
-                $this->detallecomprassScheduledForDeletion->clear();
-            }
-            $this->detallecomprassScheduledForDeletion[]= $detallecompras;
-            $detallecompras->setProductos(null);
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Productos is new, it will return
-     * an empty collection; or if this Productos has previously
-     * been saved, it will retrieve related Detallecomprass from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Productos.
-     *
-     * @param      Criteria $criteria optional Criteria object to narrow the query
-     * @param      ConnectionInterface $con optional connection object
-     * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return ObjectCollection|ChildDetallecompras[] List of ChildDetallecompras objects
-     */
-    public function getDetallecomprassJoinCompras(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
-    {
-        $query = ChildDetallecomprasQuery::create(null, $criteria);
-        $query->joinWith('Compras', $joinBehavior);
-
-        return $this->getDetallecomprass($query, $con);
     }
 
     /**
@@ -2133,249 +1774,6 @@ abstract class Productos implements ActiveRecordInterface
     }
 
     /**
-     * Clears out the collInventarios collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return void
-     * @see        addInventarios()
-     */
-    public function clearInventarios()
-    {
-        $this->collInventarios = null; // important to set this to NULL since that means it is uninitialized
-    }
-
-    /**
-     * Reset is the collInventarios collection loaded partially.
-     */
-    public function resetPartialInventarios($v = true)
-    {
-        $this->collInventariosPartial = $v;
-    }
-
-    /**
-     * Initializes the collInventarios collection.
-     *
-     * By default this just sets the collInventarios collection to an empty array (like clearcollInventarios());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param      boolean $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initInventarios($overrideExisting = true)
-    {
-        if (null !== $this->collInventarios && !$overrideExisting) {
-            return;
-        }
-        $this->collInventarios = new ObjectCollection();
-        $this->collInventarios->setModel('\Inventario');
-    }
-
-    /**
-     * Gets an array of ChildInventario objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this ChildProductos is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param      Criteria $criteria optional Criteria object to narrow the query
-     * @param      ConnectionInterface $con optional connection object
-     * @return ObjectCollection|ChildInventario[] List of ChildInventario objects
-     * @throws PropelException
-     */
-    public function getInventarios(Criteria $criteria = null, ConnectionInterface $con = null)
-    {
-        $partial = $this->collInventariosPartial && !$this->isNew();
-        if (null === $this->collInventarios || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collInventarios) {
-                // return empty collection
-                $this->initInventarios();
-            } else {
-                $collInventarios = ChildInventarioQuery::create(null, $criteria)
-                    ->filterByProductos($this)
-                    ->find($con);
-
-                if (null !== $criteria) {
-                    if (false !== $this->collInventariosPartial && count($collInventarios)) {
-                        $this->initInventarios(false);
-
-                        foreach ($collInventarios as $obj) {
-                            if (false == $this->collInventarios->contains($obj)) {
-                                $this->collInventarios->append($obj);
-                            }
-                        }
-
-                        $this->collInventariosPartial = true;
-                    }
-
-                    return $collInventarios;
-                }
-
-                if ($partial && $this->collInventarios) {
-                    foreach ($this->collInventarios as $obj) {
-                        if ($obj->isNew()) {
-                            $collInventarios[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collInventarios = $collInventarios;
-                $this->collInventariosPartial = false;
-            }
-        }
-
-        return $this->collInventarios;
-    }
-
-    /**
-     * Sets a collection of ChildInventario objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param      Collection $inventarios A Propel collection.
-     * @param      ConnectionInterface $con Optional connection object
-     * @return $this|ChildProductos The current object (for fluent API support)
-     */
-    public function setInventarios(Collection $inventarios, ConnectionInterface $con = null)
-    {
-        /** @var ChildInventario[] $inventariosToDelete */
-        $inventariosToDelete = $this->getInventarios(new Criteria(), $con)->diff($inventarios);
-
-
-        $this->inventariosScheduledForDeletion = $inventariosToDelete;
-
-        foreach ($inventariosToDelete as $inventarioRemoved) {
-            $inventarioRemoved->setProductos(null);
-        }
-
-        $this->collInventarios = null;
-        foreach ($inventarios as $inventario) {
-            $this->addInventario($inventario);
-        }
-
-        $this->collInventarios = $inventarios;
-        $this->collInventariosPartial = false;
-
-        return $this;
-    }
-
-    /**
-     * Returns the number of related Inventario objects.
-     *
-     * @param      Criteria $criteria
-     * @param      boolean $distinct
-     * @param      ConnectionInterface $con
-     * @return int             Count of related Inventario objects.
-     * @throws PropelException
-     */
-    public function countInventarios(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
-    {
-        $partial = $this->collInventariosPartial && !$this->isNew();
-        if (null === $this->collInventarios || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collInventarios) {
-                return 0;
-            }
-
-            if ($partial && !$criteria) {
-                return count($this->getInventarios());
-            }
-
-            $query = ChildInventarioQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByProductos($this)
-                ->count($con);
-        }
-
-        return count($this->collInventarios);
-    }
-
-    /**
-     * Method called to associate a ChildInventario object to this object
-     * through the ChildInventario foreign key attribute.
-     *
-     * @param  ChildInventario $l ChildInventario
-     * @return $this|\Productos The current object (for fluent API support)
-     */
-    public function addInventario(ChildInventario $l)
-    {
-        if ($this->collInventarios === null) {
-            $this->initInventarios();
-            $this->collInventariosPartial = true;
-        }
-
-        if (!$this->collInventarios->contains($l)) {
-            $this->doAddInventario($l);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ChildInventario $inventario The ChildInventario object to add.
-     */
-    protected function doAddInventario(ChildInventario $inventario)
-    {
-        $this->collInventarios[]= $inventario;
-        $inventario->setProductos($this);
-    }
-
-    /**
-     * @param  ChildInventario $inventario The ChildInventario object to remove.
-     * @return $this|ChildProductos The current object (for fluent API support)
-     */
-    public function removeInventario(ChildInventario $inventario)
-    {
-        if ($this->getInventarios()->contains($inventario)) {
-            $pos = $this->collInventarios->search($inventario);
-            $this->collInventarios->remove($pos);
-            if (null === $this->inventariosScheduledForDeletion) {
-                $this->inventariosScheduledForDeletion = clone $this->collInventarios;
-                $this->inventariosScheduledForDeletion->clear();
-            }
-            $this->inventariosScheduledForDeletion[]= $inventario;
-            $inventario->setProductos(null);
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Productos is new, it will return
-     * an empty collection; or if this Productos has previously
-     * been saved, it will retrieve related Inventarios from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Productos.
-     *
-     * @param      Criteria $criteria optional Criteria object to narrow the query
-     * @param      ConnectionInterface $con optional connection object
-     * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return ObjectCollection|ChildInventario[] List of ChildInventario objects
-     */
-    public function getInventariosJoinTienda(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
-    {
-        $query = ChildInventarioQuery::create(null, $criteria);
-        $query->joinWith('Tienda', $joinBehavior);
-
-        return $this->getInventarios($query, $con);
-    }
-
-    /**
      * Clears the current object, sets all attributes to their default values and removes
      * outgoing references as well as back-references (from other objects to this one. Results probably in a database
      * change of those foreign objects when you call `save` there).
@@ -2413,26 +1811,14 @@ abstract class Productos implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collDetallecomprass) {
-                foreach ($this->collDetallecomprass as $o) {
-                    $o->clearAllReferences($deep);
-                }
-            }
             if ($this->collDetallepedidoss) {
                 foreach ($this->collDetallepedidoss as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
-            if ($this->collInventarios) {
-                foreach ($this->collInventarios as $o) {
-                    $o->clearAllReferences($deep);
-                }
-            }
         } // if ($deep)
 
-        $this->collDetallecomprass = null;
         $this->collDetallepedidoss = null;
-        $this->collInventarios = null;
         $this->aDescuentos = null;
         $this->aSubcategorias = null;
     }

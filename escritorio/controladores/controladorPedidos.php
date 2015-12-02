@@ -18,6 +18,9 @@ switch ($opcion) {
     case '2':
         actualizarEliminar();
         break;
+    case '3':
+        mostrarHistorial();
+        break;
     default:
         mostrarProductos();
         break;
@@ -121,4 +124,12 @@ function agregar($pedido){
                 $detallePedido->setCantidad(1);
                 $detallePedido->setPrecio(ProductosQuery::create()->findOneByIdproducto($_GET['idproducto'])->getPrecio());
                 $detallePedido->save();
+}
+
+function mostrarHistorial(){
+  if(isset($_SESSION['usuario']))
+  {
+      $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
+      $pedidos = PedidosQuery::create()->findByIdcliente($usuario->getIdusuario());
+  }
 }

@@ -59,7 +59,7 @@ class UsuariosTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 12;
+    const NUM_COLUMNS = 10;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class UsuariosTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 12;
+    const NUM_HYDRATE_COLUMNS = 10;
 
     /**
      * the column name for the idusuario field
@@ -107,16 +107,6 @@ class UsuariosTableMap extends TableMap
     const COL_DIRECCION = 'usuarios.direccion';
 
     /**
-     * the column name for the iddepartamento field
-     */
-    const COL_IDDEPARTAMENTO = 'usuarios.iddepartamento';
-
-    /**
-     * the column name for the idmunicipio field
-     */
-    const COL_IDMUNICIPIO = 'usuarios.idmunicipio';
-
-    /**
      * the column name for the fecharegistro field
      */
     const COL_FECHAREGISTRO = 'usuarios.fecharegistro';
@@ -143,11 +133,11 @@ class UsuariosTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Idusuario', 'Nombreusuario', 'Nombres', 'Apellidos', 'Telefono', 'Email', 'Direccion', 'Iddepartamento', 'Idmunicipio', 'Fecharegistro', 'Idrol', 'Clave', ),
-        self::TYPE_CAMELNAME     => array('idusuario', 'nombreusuario', 'nombres', 'apellidos', 'telefono', 'email', 'direccion', 'iddepartamento', 'idmunicipio', 'fecharegistro', 'idrol', 'clave', ),
-        self::TYPE_COLNAME       => array(UsuariosTableMap::COL_IDUSUARIO, UsuariosTableMap::COL_NOMBREUSUARIO, UsuariosTableMap::COL_NOMBRES, UsuariosTableMap::COL_APELLIDOS, UsuariosTableMap::COL_TELEFONO, UsuariosTableMap::COL_EMAIL, UsuariosTableMap::COL_DIRECCION, UsuariosTableMap::COL_IDDEPARTAMENTO, UsuariosTableMap::COL_IDMUNICIPIO, UsuariosTableMap::COL_FECHAREGISTRO, UsuariosTableMap::COL_IDROL, UsuariosTableMap::COL_CLAVE, ),
-        self::TYPE_FIELDNAME     => array('idusuario', 'nombreusuario', 'nombres', 'apellidos', 'telefono', 'email', 'direccion', 'iddepartamento', 'idmunicipio', 'fecharegistro', 'idrol', 'clave', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+        self::TYPE_PHPNAME       => array('Idusuario', 'Nombreusuario', 'Nombres', 'Apellidos', 'Telefono', 'Email', 'Direccion', 'Fecharegistro', 'Idrol', 'Clave', ),
+        self::TYPE_CAMELNAME     => array('idusuario', 'nombreusuario', 'nombres', 'apellidos', 'telefono', 'email', 'direccion', 'fecharegistro', 'idrol', 'clave', ),
+        self::TYPE_COLNAME       => array(UsuariosTableMap::COL_IDUSUARIO, UsuariosTableMap::COL_NOMBREUSUARIO, UsuariosTableMap::COL_NOMBRES, UsuariosTableMap::COL_APELLIDOS, UsuariosTableMap::COL_TELEFONO, UsuariosTableMap::COL_EMAIL, UsuariosTableMap::COL_DIRECCION, UsuariosTableMap::COL_FECHAREGISTRO, UsuariosTableMap::COL_IDROL, UsuariosTableMap::COL_CLAVE, ),
+        self::TYPE_FIELDNAME     => array('idusuario', 'nombreusuario', 'nombres', 'apellidos', 'telefono', 'email', 'direccion', 'fecharegistro', 'idrol', 'clave', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -157,11 +147,11 @@ class UsuariosTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Idusuario' => 0, 'Nombreusuario' => 1, 'Nombres' => 2, 'Apellidos' => 3, 'Telefono' => 4, 'Email' => 5, 'Direccion' => 6, 'Iddepartamento' => 7, 'Idmunicipio' => 8, 'Fecharegistro' => 9, 'Idrol' => 10, 'Clave' => 11, ),
-        self::TYPE_CAMELNAME     => array('idusuario' => 0, 'nombreusuario' => 1, 'nombres' => 2, 'apellidos' => 3, 'telefono' => 4, 'email' => 5, 'direccion' => 6, 'iddepartamento' => 7, 'idmunicipio' => 8, 'fecharegistro' => 9, 'idrol' => 10, 'clave' => 11, ),
-        self::TYPE_COLNAME       => array(UsuariosTableMap::COL_IDUSUARIO => 0, UsuariosTableMap::COL_NOMBREUSUARIO => 1, UsuariosTableMap::COL_NOMBRES => 2, UsuariosTableMap::COL_APELLIDOS => 3, UsuariosTableMap::COL_TELEFONO => 4, UsuariosTableMap::COL_EMAIL => 5, UsuariosTableMap::COL_DIRECCION => 6, UsuariosTableMap::COL_IDDEPARTAMENTO => 7, UsuariosTableMap::COL_IDMUNICIPIO => 8, UsuariosTableMap::COL_FECHAREGISTRO => 9, UsuariosTableMap::COL_IDROL => 10, UsuariosTableMap::COL_CLAVE => 11, ),
-        self::TYPE_FIELDNAME     => array('idusuario' => 0, 'nombreusuario' => 1, 'nombres' => 2, 'apellidos' => 3, 'telefono' => 4, 'email' => 5, 'direccion' => 6, 'iddepartamento' => 7, 'idmunicipio' => 8, 'fecharegistro' => 9, 'idrol' => 10, 'clave' => 11, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, )
+        self::TYPE_PHPNAME       => array('Idusuario' => 0, 'Nombreusuario' => 1, 'Nombres' => 2, 'Apellidos' => 3, 'Telefono' => 4, 'Email' => 5, 'Direccion' => 6, 'Fecharegistro' => 7, 'Idrol' => 8, 'Clave' => 9, ),
+        self::TYPE_CAMELNAME     => array('idusuario' => 0, 'nombreusuario' => 1, 'nombres' => 2, 'apellidos' => 3, 'telefono' => 4, 'email' => 5, 'direccion' => 6, 'fecharegistro' => 7, 'idrol' => 8, 'clave' => 9, ),
+        self::TYPE_COLNAME       => array(UsuariosTableMap::COL_IDUSUARIO => 0, UsuariosTableMap::COL_NOMBREUSUARIO => 1, UsuariosTableMap::COL_NOMBRES => 2, UsuariosTableMap::COL_APELLIDOS => 3, UsuariosTableMap::COL_TELEFONO => 4, UsuariosTableMap::COL_EMAIL => 5, UsuariosTableMap::COL_DIRECCION => 6, UsuariosTableMap::COL_FECHAREGISTRO => 7, UsuariosTableMap::COL_IDROL => 8, UsuariosTableMap::COL_CLAVE => 9, ),
+        self::TYPE_FIELDNAME     => array('idusuario' => 0, 'nombreusuario' => 1, 'nombres' => 2, 'apellidos' => 3, 'telefono' => 4, 'email' => 5, 'direccion' => 6, 'fecharegistro' => 7, 'idrol' => 8, 'clave' => 9, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -188,8 +178,6 @@ class UsuariosTableMap extends TableMap
         $this->addColumn('telefono', 'Telefono', 'VARCHAR', false, 45, null);
         $this->addColumn('email', 'Email', 'VARCHAR', false, 100, null);
         $this->addColumn('direccion', 'Direccion', 'VARCHAR', false, 45, null);
-        $this->addForeignKey('iddepartamento', 'Iddepartamento', 'INTEGER', 'departamentos', 'iddepartamento', false, null, null);
-        $this->addForeignKey('idmunicipio', 'Idmunicipio', 'INTEGER', 'municipios', 'idmunicipio', false, null, null);
         $this->addColumn('fecharegistro', 'Fecharegistro', 'DATE', false, null, null);
         $this->addForeignKey('idrol', 'Idrol', 'INTEGER', 'roles', 'idrol', false, null, null);
         $this->addColumn('clave', 'Clave', 'VARCHAR', false, 300, null);
@@ -200,20 +188,6 @@ class UsuariosTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Departamentos', '\\Departamentos', RelationMap::MANY_TO_ONE, array (
-  0 =>
-  array (
-    0 => ':iddepartamento',
-    1 => ':iddepartamento',
-  ),
-), null, null, null, false);
-        $this->addRelation('Municipios', '\\Municipios', RelationMap::MANY_TO_ONE, array (
-  0 =>
-  array (
-    0 => ':idmunicipio',
-    1 => ':idmunicipio',
-  ),
-), null, null, null, false);
         $this->addRelation('Roles', '\\Roles', RelationMap::MANY_TO_ONE, array (
   0 =>
   array (
@@ -385,8 +359,6 @@ class UsuariosTableMap extends TableMap
             $criteria->addSelectColumn(UsuariosTableMap::COL_TELEFONO);
             $criteria->addSelectColumn(UsuariosTableMap::COL_EMAIL);
             $criteria->addSelectColumn(UsuariosTableMap::COL_DIRECCION);
-            $criteria->addSelectColumn(UsuariosTableMap::COL_IDDEPARTAMENTO);
-            $criteria->addSelectColumn(UsuariosTableMap::COL_IDMUNICIPIO);
             $criteria->addSelectColumn(UsuariosTableMap::COL_FECHAREGISTRO);
             $criteria->addSelectColumn(UsuariosTableMap::COL_IDROL);
             $criteria->addSelectColumn(UsuariosTableMap::COL_CLAVE);
@@ -398,8 +370,6 @@ class UsuariosTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.telefono');
             $criteria->addSelectColumn($alias . '.email');
             $criteria->addSelectColumn($alias . '.direccion');
-            $criteria->addSelectColumn($alias . '.iddepartamento');
-            $criteria->addSelectColumn($alias . '.idmunicipio');
             $criteria->addSelectColumn($alias . '.fecharegistro');
             $criteria->addSelectColumn($alias . '.idrol');
             $criteria->addSelectColumn($alias . '.clave');

@@ -31,6 +31,7 @@ switch ($opcion) {
        cambiarClave();
         break;
     
+    
 }
 
 function login() {

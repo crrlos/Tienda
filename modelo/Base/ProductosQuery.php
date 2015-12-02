@@ -64,16 +64,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductosQuery rightJoinWithSubcategorias() Adds a RIGHT JOIN clause and with to the query using the Subcategorias relation
  * @method     ChildProductosQuery innerJoinWithSubcategorias() Adds a INNER JOIN clause and with to the query using the Subcategorias relation
  *
- * @method     ChildProductosQuery leftJoinDetallecompras($relationAlias = null) Adds a LEFT JOIN clause to the query using the Detallecompras relation
- * @method     ChildProductosQuery rightJoinDetallecompras($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Detallecompras relation
- * @method     ChildProductosQuery innerJoinDetallecompras($relationAlias = null) Adds a INNER JOIN clause to the query using the Detallecompras relation
- *
- * @method     ChildProductosQuery joinWithDetallecompras($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Detallecompras relation
- *
- * @method     ChildProductosQuery leftJoinWithDetallecompras() Adds a LEFT JOIN clause and with to the query using the Detallecompras relation
- * @method     ChildProductosQuery rightJoinWithDetallecompras() Adds a RIGHT JOIN clause and with to the query using the Detallecompras relation
- * @method     ChildProductosQuery innerJoinWithDetallecompras() Adds a INNER JOIN clause and with to the query using the Detallecompras relation
- *
  * @method     ChildProductosQuery leftJoinDetallepedidos($relationAlias = null) Adds a LEFT JOIN clause to the query using the Detallepedidos relation
  * @method     ChildProductosQuery rightJoinDetallepedidos($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Detallepedidos relation
  * @method     ChildProductosQuery innerJoinDetallepedidos($relationAlias = null) Adds a INNER JOIN clause to the query using the Detallepedidos relation
@@ -84,17 +74,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductosQuery rightJoinWithDetallepedidos() Adds a RIGHT JOIN clause and with to the query using the Detallepedidos relation
  * @method     ChildProductosQuery innerJoinWithDetallepedidos() Adds a INNER JOIN clause and with to the query using the Detallepedidos relation
  *
- * @method     ChildProductosQuery leftJoinInventario($relationAlias = null) Adds a LEFT JOIN clause to the query using the Inventario relation
- * @method     ChildProductosQuery rightJoinInventario($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Inventario relation
- * @method     ChildProductosQuery innerJoinInventario($relationAlias = null) Adds a INNER JOIN clause to the query using the Inventario relation
- *
- * @method     ChildProductosQuery joinWithInventario($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Inventario relation
- *
- * @method     ChildProductosQuery leftJoinWithInventario() Adds a LEFT JOIN clause and with to the query using the Inventario relation
- * @method     ChildProductosQuery rightJoinWithInventario() Adds a RIGHT JOIN clause and with to the query using the Inventario relation
- * @method     ChildProductosQuery innerJoinWithInventario() Adds a INNER JOIN clause and with to the query using the Inventario relation
- *
- * @method     \DescuentosQuery|\SubcategoriasQuery|\DetallecomprasQuery|\DetallepedidosQuery|\InventarioQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \DescuentosQuery|\SubcategoriasQuery|\DetallepedidosQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildProductos findOne(ConnectionInterface $con = null) Return the first ChildProductos matching the query
  * @method     ChildProductos findOneOrCreate(ConnectionInterface $con = null) Return the first ChildProductos matching the query, or a new ChildProductos object populated from the query conditions when no match is found
@@ -718,79 +698,6 @@ abstract class ProductosQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query by a related \Detallecompras object
-     *
-     * @param \Detallecompras|ObjectCollection $detallecompras the related object to use as filter
-     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return ChildProductosQuery The current query, for fluid interface
-     */
-    public function filterByDetallecompras($detallecompras, $comparison = null)
-    {
-        if ($detallecompras instanceof \Detallecompras) {
-            return $this
-                ->addUsingAlias(ProductosTableMap::COL_IDPRODUCTO, $detallecompras->getIdproducto(), $comparison);
-        } elseif ($detallecompras instanceof ObjectCollection) {
-            return $this
-                ->useDetallecomprasQuery()
-                ->filterByPrimaryKeys($detallecompras->getPrimaryKeys())
-                ->endUse();
-        } else {
-            throw new PropelException('filterByDetallecompras() only accepts arguments of type \Detallecompras or Collection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the Detallecompras relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return $this|ChildProductosQuery The current query, for fluid interface
-     */
-    public function joinDetallecompras($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Detallecompras');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'Detallecompras');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the Detallecompras relation Detallecompras object
-     *
-     * @see useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return \DetallecomprasQuery A secondary query class using the current class as primary query
-     */
-    public function useDetallecomprasQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        return $this
-            ->joinDetallecompras($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Detallecompras', '\DetallecomprasQuery');
-    }
-
-    /**
      * Filter the query by a related \Detallepedidos object
      *
      * @param \Detallepedidos|ObjectCollection $detallepedidos the related object to use as filter
@@ -861,79 +768,6 @@ abstract class ProductosQuery extends ModelCriteria
         return $this
             ->joinDetallepedidos($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'Detallepedidos', '\DetallepedidosQuery');
-    }
-
-    /**
-     * Filter the query by a related \Inventario object
-     *
-     * @param \Inventario|ObjectCollection $inventario the related object to use as filter
-     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return ChildProductosQuery The current query, for fluid interface
-     */
-    public function filterByInventario($inventario, $comparison = null)
-    {
-        if ($inventario instanceof \Inventario) {
-            return $this
-                ->addUsingAlias(ProductosTableMap::COL_IDPRODUCTO, $inventario->getIdproducto(), $comparison);
-        } elseif ($inventario instanceof ObjectCollection) {
-            return $this
-                ->useInventarioQuery()
-                ->filterByPrimaryKeys($inventario->getPrimaryKeys())
-                ->endUse();
-        } else {
-            throw new PropelException('filterByInventario() only accepts arguments of type \Inventario or Collection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the Inventario relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return $this|ChildProductosQuery The current query, for fluid interface
-     */
-    public function joinInventario($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Inventario');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'Inventario');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the Inventario relation Inventario object
-     *
-     * @see useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return \InventarioQuery A secondary query class using the current class as primary query
-     */
-    public function useInventarioQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        return $this
-            ->joinInventario($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Inventario', '\InventarioQuery');
     }
 
     /**

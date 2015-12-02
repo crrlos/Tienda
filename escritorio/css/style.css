@@ -141,11 +141,33 @@ input[placeholder] {
    
 }
 #titulo{
-  
-    background-color:#E5BC7A;
-        height:20%;
+      margin-top: 15px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      border-style: solid;
+      border-width: 1px;
+      padding-bottom: 25px;
    
     
+}
+#imagen_detalle{
+   margin-left: 20%;
+    float:left;
+    padding-right: 5%;
+   
+}
+#detalle_producto{
+    
+     //text-align: center;
+}
+#redes{
+   
+    //text-align: center;
+    
+}
+#redes table{
+
 }
 #detalles{
    height:50%;
@@ -153,6 +175,7 @@ input[placeholder] {
         float:right;
         width:50%;
 }
+
 
 #texto{
     text-align: center;
@@ -166,7 +189,7 @@ input[placeholder] {
 
 
 
-   #arriba{
+#arriba{
         
         height:10%;
         text-align: center;
