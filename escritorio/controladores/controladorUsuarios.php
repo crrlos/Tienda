@@ -28,10 +28,11 @@ switch ($opcion) {
         recuperar();
         break;
     case 5:
-       cambiarClave();
+        cambiarClave();
         break;
-    
-    
+    case 6:
+        cerrarSesion();
+        break;
 }
 
 function login() {
@@ -39,7 +40,7 @@ function login() {
     $usuario = UsuariosQuery::create()->findOneByNombreusuario($_POST['usuario']);
 
     if ($usuario != null) {
-        if (sha1($_POST['clave'] )== $usuario->getClave()) {
+        if (sha1($_POST['clave']) == $usuario->getClave()) {
             $_SESSION['usuario'] = $usuario->getNombreusuario();
             header("location:http://www.impuso2015.tk");
         }
@@ -56,13 +57,12 @@ function registrar() {
         $usuario->setTelefono($_POST['telefono']);
         $usuario->setEmail($_POST['email']);
         $usuario->setDireccion($_POST['direccion']);
-        $usuario->setIddepartamento($_POST['departamento']);
-        $usuario->setIdmunicipio($_POST['municipio']);
-        $usuario->setClave($_POST['clave']);
+        $usuario->setClave(sha1($_POST['clave']));
         $usuario->setIdrol(2);
         $usuario->setFecharegistro(date("Y-m-d"));
         $usuario->save();
         $_SESSION['usuario'] = $usuario->getNombreusuario();
+        header("location:http://www.impuso2015.tk");
     } catch (Exception $ex) {
         
     }
@@ -70,17 +70,16 @@ function registrar() {
 
 function actualizar() {
     try {
-        $usuario = UsuariosQuery::create()->findOneByIdusuario($_POST['idusuario']);
+        $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
         $usuario->setNombreusuario($_POST['nombreusuario']);
         $usuario->setNombres($_POST['nombres']);
         $usuario->setApellidos($_POST['apellidos']);
         $usuario->setTelefono($_POST['telefono']);
         $usuario->setEmail($_POST['email']);
         $usuario->setDireccion($_POST['direccion']);
-        $usuario->setIddepartamento($_POST['departamento']);
-        $usuario->setIdmunicipio($_POST['municipio']);
-        $usuario->setClave($_POST['clave']);
+        $usuario->setClave(sha1($_POST['clave']));
         $usuario->save();
+        header("location:http://www.impuso2015.tk/actualizar/correcto");
     } catch (Exception $ex) {
         
     }
@@ -97,8 +96,8 @@ function recuperar() {
             $hash->setIdusuario($usuario->getIdusuario());
             $hash->setHash($cadena);
             $hash->save();
-            
-            
+
+
             $mail = "Para reestablecer tu contraseña ingresa en el siguiente enlace: "
                     . "http://www.impuso2015.tk/recuperacion/" . $cadena;
 //Titulo
@@ -116,27 +115,26 @@ function recuperar() {
                 echo "Mensaje no enviado";
             }
             header("location:http://www.impuso2015.tk/forgot/correcto");
-        }
-        else
-        header("location:http://www.impuso2015.tk/forgot/error");
+        } else
+            header("location:http://www.impuso2015.tk/forgot/error");
     } catch (Exception $ex) {
         
     }
-    
-    
 }
-function cambiarClave(){
-    if(isset($_POST['hash']))
-        {
-          $usuario = HashQuery::create()->findOneByHash($_POST['hash']);
-          if(isset($usuario))
-          {
-              $user = UsuariosQuery::create()->findOneByIdusuario($usuario->getIdusuario());
-              $user->setClave(sha1($_POST['clave']));
-              $user->save();
-              $usuario->delete();
-          }
-        
-            
+
+function cambiarClave() {
+    if (isset($_POST['hash'])) {
+        $usuario = HashQuery::create()->findOneByHash($_POST['hash']);
+        if (isset($usuario)) {
+            $user = UsuariosQuery::create()->findOneByIdusuario($usuario->getIdusuario());
+            $user->setClave(sha1($_POST['clave']));
+            $user->save();
+            $usuario->delete();
         }
     }
+}
+
+function cerrarSesion() {
+    session_destroy();
+    header("location:http://www.impuso2015.tk");
+}

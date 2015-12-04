@@ -10,6 +10,7 @@
                                             <input type="hidden" name="opusuario" value="1">
 						Usuario<input type="text" id="username" name="usuario" />
 						Contraseña<input type="password" id="password" name="clave" />
+                                                <a href="/registro">Registrarse</a><br>
                                                 <a href="/forgot">¿Olvidó su contraseña?</a>
 						<button type="submit" id="submit">Entrar</button>
                                               

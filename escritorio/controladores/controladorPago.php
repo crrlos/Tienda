@@ -45,6 +45,7 @@ class ControladorPago {
     }
 
     function mostrarDetalles() {
+        
         include __DIR__ . '/../paginas/detallePago.php';
     }
 

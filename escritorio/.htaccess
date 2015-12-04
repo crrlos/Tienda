@@ -14,18 +14,19 @@ RewriteEngine on
 RewriteRule ^/?$ index.php
 RewriteRule ^registro/?$ index.php?opcion=registro&user=registro
 RewriteRule ^login/?$ index.php?opcion=login
-RewriteRule ^productos/(.*)/(.*)?$ index.php?opcion=productos&subcategoria=$1&pagina=$2
+RewriteRule ^productos/(.*)/(.*)/?$ index.php?opcion=productos&subcategoria=$1&pagina=$2
 
-RewriteRule ^logout/?$ index.php?opcion=logout
+RewriteRule ^logout/?$ /controladores/controladorUsuarios.php?opusuario=6
 RewriteRule ^carrito/?$ index.php?opcion=carrito
 RewriteRule ^opcarrito/?$ /controladores/controladorPedidos.php?opcarrito=2
 RewriteRule ^agregar/(.*)/?$ /controladores/controladorPedidos.php?opcarrito=1&idproducto=$1
 RewriteRule ^testing/?$ /controladores/testing.php
 RewriteRule ^pago/?$ index.php?opcion=pago
-Rewriterule ^actualizar/?$ index.php?opcion=actualizar&opusuario=3
+Rewriterule ^actualizar/?(.*)/?$ index.php?opcion=actualizar&estado=$1
 RewriteRule ^forgot/?$ index.php?opcion=recuperar&opusuario=4
 RewriteRule ^forgot/error?$ index.php?opcion=recuperar&estado=0
 RewriteRule ^forgot/correcto?$ index.php?opcion=recuperar&estado=1
 RewriteRule ^recuperacion/(.*)/?$ index.php?opcion=cambiar&hash=$1
 RewriteRule ^detalles/producto/(.*)/?$ /controladores/controladorProductos.php?opproducto=1&idproducto=$1
 RewriteRule ^history/?$ /controladores/controladorPedidos.php?opcarrito=3
+

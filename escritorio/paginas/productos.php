@@ -21,7 +21,7 @@
                         <hr>
                         descripción del artículo
                         <br>
-                        <b>Precio:</b><?= $producto->getPrecio() ?>
+                        <b>Precio: </b>$<?= $producto->getPrecio() ?>
                         <br>
                         <a href="http://www.impuso2015.tk/detalles/producto/<?= $producto->getIdproducto() ?>">detalles</a>
                         <br>

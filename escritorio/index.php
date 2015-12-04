@@ -11,14 +11,14 @@ require_once './plantillas/Mobile.php';
 include("./plantillas/header.php");
 //redireccion a web movil
 $detect = new Mobile_Detect();
-if($detect->isMobile())
-header ("Location: http://m.impuso2015.tk");
+if ($detect->isMobile())
+    header("Location: http://m.impuso2015.tk");
 ///////////////////////////////////////////////
 
 
-$opcion = isset($_GET['opcion'])?$_GET['opcion']:"";
+$opcion = isset($_GET['opcion']) ? $_GET['opcion'] : "";
 
-switch ($opcion){
+switch ($opcion) {
     case 'productos':
         include('./controladores/controladorProductos.php');
         break;
@@ -31,7 +31,7 @@ switch ($opcion){
     case 'logout':
         include('./paginas/cerrarSesion.php');
         break;
-        case 'carrito':
+    case 'carrito':
         include('./controladores/controladorPedidos.php');
         break;
     case 'pago':
@@ -50,8 +50,6 @@ switch ($opcion){
         break;
     default:
         include('./paginas/busqueda.php');
-       
-    
 }
 
 require_once './plantillas/footer.php';

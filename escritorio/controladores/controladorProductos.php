@@ -22,6 +22,7 @@ function mostrarProductos(){
 
 function detalleProducto(){
     $producto = ProductosQuery::create()->findOneByIdproducto($_GET['idproducto']);
+    $descuento = 1 - (DescuentosQuery::create()->findOneByIddescuento($producto->getIddescuento())->getValor()/100);
     if(isset($producto))
     {
         require_once __DIR__.'/../plantillas/header.php';

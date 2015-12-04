@@ -35,8 +35,8 @@ function mostrarProductos() {
     if (isset($_SESSION['usuario'])) {
         $idusuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])->getIdusuario();
         $pedidos = PedidosQuery::create()->filterByIdcliente($idusuario)->filterByEstado('pendiente')->findOne();
-        $productos = $pedidos != null ? $pedidos->getDetallepedidoss() : null;
-        if ($productos != null) {
+        $detalle_pedido = $pedidos != null ? $pedidos->getDetallepedidoss() : null;
+        if ($detalle_pedido != null) {
             require_once __DIR__ . '/../paginas/carrito.php';
         } else {
             echo 'carrito vacio';
@@ -114,6 +114,7 @@ function eliminarProductosCarrito() {
             $detallePedido = DetallepedidosQuery::create()->findOneByIddetallepedido($value);
             $detallePedido->delete();
         }
+        header("location:http://www.impuso2015.tk/carrito");
     }
 }
 

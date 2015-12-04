@@ -11,31 +11,35 @@
             <th>X</th>
         </tr>
         <?php
-        foreach ($productos as $producto) {
-                $articulo = ProductosQuery::create()->findOneByIdproducto($producto->getIdproducto());
-                if ($articulo->getPrecio() != $producto->getPrecio()) {
-                    $producto->setPrecio($articulo->getPrecio());
-                    $producto->save();
-                   
+        foreach ($detalle_pedido as $detalle) {
+                $producto = ProductosQuery::create()->findOneByIdproducto($detalle->getIdproducto());
+                $descuento = 1 - (DescuentosQuery::create()->findOneByIddescuento($producto->getIddescuento())->getValor()/100);
+                $precio_producto = $producto->getPrecio() * $descuento;
+                if ($precio_producto != $detalle->getPrecio()) {
+                    $detalle->setPrecio($precio_producto);
+                    $detalle->save();
+                    
                 }
+                
         ?>
+       
         <tr>
             <td>
                 
-                <?php echo $articulo->getNombre() ?>
+                <?php echo $producto->getNombre() ?>
             </td>
             <td>
-                <input type="text" name="cantidad[]" style="width: 25px;text-align: center"value="<?php echo $producto->getCantidad()?>">
+                <input type="text" name="cantidad[]" style="width: 25px;text-align: center"value="<?php echo $detalle->getCantidad()?>">
                 
             </td>
             <td>
-                <?php echo ' $'.$articulo->getPrecio()?>
+                <?php echo ' $'.$precio_producto?>
             </td>
             <td>
-                <?php echo ' $'.$articulo->getPrecio()*$producto->getCantidad()?>
+                <?php echo ' $'.$precio_producto * $detalle->getCantidad()?>
             </td>
             <td>
-                <input type="checkbox" name="seleccion[]" value="<?php echo $producto->getIddetallepedido() ?>">
+                <input type="checkbox" name="seleccion[]" value="<?php echo $detalle->getIddetallepedido() ?>">
             </td>
         </tr>
         <?php } ?>

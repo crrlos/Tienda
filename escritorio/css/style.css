@@ -220,12 +220,18 @@ input[placeholder] {
 
 
 #paginacion{
+    
     text-align: center;
-   float: bottom;
+    float: bottom;
    
   
 }
 
+#detalle_pago{
+    margin-top: 25px;
+   
+   margin-left: 25%;
+}
 
 #contenedor {
     display: table;

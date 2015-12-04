@@ -2,11 +2,19 @@
 $nombreUsuario = isset($_SESSION['usuario'])?$_SESSION['usuario']:null;
 $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
 ?>
-
+<div id="mensaje_actualizacion">
+    <?php
+    if(isset($_GET['estado']))
+    {
+        if($_GET['estado'] == 'correcto')
+            echo 'actualización de datos correcta';
+    }
+    ?>
+</div>
 <div id="login">
     <table>
-        <form action ="./controladores/controladorUsuarios.php" method="post">
-            <input type="hidden" name="opusuario" value="2">
+        <form action ="/controladores/controladorUsuarios.php" method="post">
+            <input type="hidden" name="opusuario" value="<?= $nombreUsuario!=null?"3":2?>">
             <tr>
                 <td>Usuario:</td>
             </tr>
@@ -56,36 +64,6 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
                 </td>
             </tr>
             <tr>
-                <td>Departamento:</td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="departamento" size="1" onchange="recargarMunicipios(this.value)">
-                        
-                        <?php $departamentos = DepartamentosQuery::create()->find();
-                            foreach ($departamentos as $departamento){
-                        ?>
-                        <option <?= $departamento->getIddepartamento() == $usuario->getIddepartamento()?"selected":"" ?> value="<?php echo $departamento->getIddepartamento() ?>"> 
-                            
-                           <?php echo $departamento->getNombre() ?>
-                        </option>
-                        
-                            <?php }?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Municipio:</td>
-            </tr>
-            <tr>
-                <td>
-                    <select name="municipio" size="1" id="municipio">
-                        <option value="1">municipio</option>
-                    </select>
-
-                </td>
-            </tr>
-            <tr>
                 <td>
                     Contraseña:
                 </td>
@@ -106,7 +84,7 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
                 </td>
             </tr>
             <tr>
-                <td><input type="submit" value="Registrar"></td>
+                <td><input type="submit" value="<?= $nombreUsuario!= null?"Actualizar":"Registrarse"?>"></td>
             </tr>
 
         </form>

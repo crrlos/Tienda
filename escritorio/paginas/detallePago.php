@@ -2,6 +2,7 @@
 $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
 
 ?>
+<div id="detalle_pago">
 <form action="/pago" method="post">
 <table>
     <tr>
@@ -11,8 +12,7 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])
         </td>
         <td>
             <?php echo $usuario->getDireccion(); ?><br>
-            <?php echo $usuario->getMunicipios()->getNombre();?>,
-            <?php echo $usuario->getDepartamentos()->getNombre()?>
+           
         </td>
             
     </tr>
@@ -34,9 +34,20 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])
         </td>
     </tr>
     <tr>
+        <th>artículo</th>
+        <th>cantidad</th>
+        <th>precio</th>
+    </tr>
+    <tr>
+        <td><center>Jabón</center></td>
+        <td><center>2</center></td>
+        <td><center>$2.5</center></td> 
+    </tr>
+    <tr>
         <td>
             <input type="submit" value="Pagar">
         </td>
     </tr>
 </table>
 </form>
+</div>
