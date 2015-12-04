@@ -7,7 +7,7 @@ $opcion = isset($_GET['opcion'])?$_GET['opcion']:null;
 switch ($opcion)
 {
     case 'agregar':
-        echo 'agregar';
+        include('./paginas/agregarProducto.php');
         break;
     
 }

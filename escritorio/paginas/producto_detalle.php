@@ -2,7 +2,7 @@
 
 
 <div id="imagen_detalle">
-    <img src="http://ll-us-i5.wal.co/dfw/4ff9c6c9-2ac9/k2-_ed8b8f8d-e696-4a96-8ce9-d78246f10ed1.v1.jpg-bc204bdaebb10e709a997a8bb4518156dfa6e3ed-optim-450x450.jpg" width="200">
+    <img id="zoom_01"  src="http://www.impuso2015.tk/imagenes/moviles/mouse.png" data-zoom-image="http://www.impuso2015.tk/imagenes/moviles/mouse.png" height="200">
 </div>
 <div id="detalle_producto">
     <br>

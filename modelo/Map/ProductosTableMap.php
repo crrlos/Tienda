@@ -59,7 +59,7 @@ class ProductosTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 7;
+    const NUM_COLUMNS = 9;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class ProductosTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 7;
+    const NUM_HYDRATE_COLUMNS = 9;
 
     /**
      * the column name for the idproducto field
@@ -107,6 +107,16 @@ class ProductosTableMap extends TableMap
     const COL_IDDESCUENTO = 'productos.iddescuento';
 
     /**
+     * the column name for the imagen field
+     */
+    const COL_IMAGEN = 'productos.imagen';
+
+    /**
+     * the column name for the cantidad field
+     */
+    const COL_CANTIDAD = 'productos.cantidad';
+
+    /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -118,11 +128,11 @@ class ProductosTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Idproducto', 'Nombre', 'Detalle', 'Descripcion', 'Precio', 'Idsubcategoria', 'Iddescuento', ),
-        self::TYPE_CAMELNAME     => array('idproducto', 'nombre', 'detalle', 'descripcion', 'precio', 'idsubcategoria', 'iddescuento', ),
-        self::TYPE_COLNAME       => array(ProductosTableMap::COL_IDPRODUCTO, ProductosTableMap::COL_NOMBRE, ProductosTableMap::COL_DETALLE, ProductosTableMap::COL_DESCRIPCION, ProductosTableMap::COL_PRECIO, ProductosTableMap::COL_IDSUBCATEGORIA, ProductosTableMap::COL_IDDESCUENTO, ),
-        self::TYPE_FIELDNAME     => array('idproducto', 'nombre', 'detalle', 'descripcion', 'precio', 'idsubcategoria', 'iddescuento', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Idproducto', 'Nombre', 'Detalle', 'Descripcion', 'Precio', 'Idsubcategoria', 'Iddescuento', 'Imagen', 'Cantidad', ),
+        self::TYPE_CAMELNAME     => array('idproducto', 'nombre', 'detalle', 'descripcion', 'precio', 'idsubcategoria', 'iddescuento', 'imagen', 'cantidad', ),
+        self::TYPE_COLNAME       => array(ProductosTableMap::COL_IDPRODUCTO, ProductosTableMap::COL_NOMBRE, ProductosTableMap::COL_DETALLE, ProductosTableMap::COL_DESCRIPCION, ProductosTableMap::COL_PRECIO, ProductosTableMap::COL_IDSUBCATEGORIA, ProductosTableMap::COL_IDDESCUENTO, ProductosTableMap::COL_IMAGEN, ProductosTableMap::COL_CANTIDAD, ),
+        self::TYPE_FIELDNAME     => array('idproducto', 'nombre', 'detalle', 'descripcion', 'precio', 'idsubcategoria', 'iddescuento', 'imagen', 'cantidad', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -132,11 +142,11 @@ class ProductosTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Idproducto' => 0, 'Nombre' => 1, 'Detalle' => 2, 'Descripcion' => 3, 'Precio' => 4, 'Idsubcategoria' => 5, 'Iddescuento' => 6, ),
-        self::TYPE_CAMELNAME     => array('idproducto' => 0, 'nombre' => 1, 'detalle' => 2, 'descripcion' => 3, 'precio' => 4, 'idsubcategoria' => 5, 'iddescuento' => 6, ),
-        self::TYPE_COLNAME       => array(ProductosTableMap::COL_IDPRODUCTO => 0, ProductosTableMap::COL_NOMBRE => 1, ProductosTableMap::COL_DETALLE => 2, ProductosTableMap::COL_DESCRIPCION => 3, ProductosTableMap::COL_PRECIO => 4, ProductosTableMap::COL_IDSUBCATEGORIA => 5, ProductosTableMap::COL_IDDESCUENTO => 6, ),
-        self::TYPE_FIELDNAME     => array('idproducto' => 0, 'nombre' => 1, 'detalle' => 2, 'descripcion' => 3, 'precio' => 4, 'idsubcategoria' => 5, 'iddescuento' => 6, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Idproducto' => 0, 'Nombre' => 1, 'Detalle' => 2, 'Descripcion' => 3, 'Precio' => 4, 'Idsubcategoria' => 5, 'Iddescuento' => 6, 'Imagen' => 7, 'Cantidad' => 8, ),
+        self::TYPE_CAMELNAME     => array('idproducto' => 0, 'nombre' => 1, 'detalle' => 2, 'descripcion' => 3, 'precio' => 4, 'idsubcategoria' => 5, 'iddescuento' => 6, 'imagen' => 7, 'cantidad' => 8, ),
+        self::TYPE_COLNAME       => array(ProductosTableMap::COL_IDPRODUCTO => 0, ProductosTableMap::COL_NOMBRE => 1, ProductosTableMap::COL_DETALLE => 2, ProductosTableMap::COL_DESCRIPCION => 3, ProductosTableMap::COL_PRECIO => 4, ProductosTableMap::COL_IDSUBCATEGORIA => 5, ProductosTableMap::COL_IDDESCUENTO => 6, ProductosTableMap::COL_IMAGEN => 7, ProductosTableMap::COL_CANTIDAD => 8, ),
+        self::TYPE_FIELDNAME     => array('idproducto' => 0, 'nombre' => 1, 'detalle' => 2, 'descripcion' => 3, 'precio' => 4, 'idsubcategoria' => 5, 'iddescuento' => 6, 'imagen' => 7, 'cantidad' => 8, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -163,6 +173,8 @@ class ProductosTableMap extends TableMap
         $this->addColumn('precio', 'Precio', 'DOUBLE', false, 7, null);
         $this->addForeignKey('idsubcategoria', 'Idsubcategoria', 'INTEGER', 'subcategorias', 'idsubcategoria', false, null, null);
         $this->addForeignKey('iddescuento', 'Iddescuento', 'INTEGER', 'descuentos', 'iddescuento', false, null, null);
+        $this->addColumn('imagen', 'Imagen', 'VARCHAR', false, 500, null);
+        $this->addColumn('cantidad', 'Cantidad', 'INTEGER', true, 10, null);
     } // initialize()
 
     /**
@@ -341,6 +353,8 @@ class ProductosTableMap extends TableMap
             $criteria->addSelectColumn(ProductosTableMap::COL_PRECIO);
             $criteria->addSelectColumn(ProductosTableMap::COL_IDSUBCATEGORIA);
             $criteria->addSelectColumn(ProductosTableMap::COL_IDDESCUENTO);
+            $criteria->addSelectColumn(ProductosTableMap::COL_IMAGEN);
+            $criteria->addSelectColumn(ProductosTableMap::COL_CANTIDAD);
         } else {
             $criteria->addSelectColumn($alias . '.idproducto');
             $criteria->addSelectColumn($alias . '.nombre');
@@ -349,6 +363,8 @@ class ProductosTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.precio');
             $criteria->addSelectColumn($alias . '.idsubcategoria');
             $criteria->addSelectColumn($alias . '.iddescuento');
+            $criteria->addSelectColumn($alias . '.imagen');
+            $criteria->addSelectColumn($alias . '.cantidad');
         }
     }
 
