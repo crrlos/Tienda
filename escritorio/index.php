@@ -49,7 +49,7 @@ switch ($opcion) {
     case 'detalle':
         break;
     default:
-        include('./paginas/busqueda.php');
+      
 }
 
 require_once './plantillas/footer.php';

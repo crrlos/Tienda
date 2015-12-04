@@ -29,4 +29,5 @@ RewriteRule ^forgot/correcto?$ index.php?opcion=recuperar&estado=1
 RewriteRule ^recuperacion/(.*)/?$ index.php?opcion=cambiar&hash=$1
 RewriteRule ^detalles/producto/(.*)/?$ /controladores/controladorProductos.php?opproducto=1&idproducto=$1
 RewriteRule ^history/?$ /controladores/controladorPedidos.php?opcarrito=3
+RewriteRule ^success/?$ index.php?opcion=pago_completado
 

@@ -37,10 +37,13 @@ function mostrarProductos() {
         $pedidos = PedidosQuery::create()->filterByIdcliente($idusuario)->filterByEstado('pendiente')->findOne();
         $detalle_pedido = $pedidos != null ? $pedidos->getDetallepedidoss() : null;
         if ($detalle_pedido != null) {
-            require_once __DIR__ . '/../paginas/carrito.php';
-        } else {
-            echo 'carrito vacio';
-        }
+            if ($detalle_pedido->count() > 0){
+                require_once __DIR__ . '/../paginas/carrito.php';
+            }
+            else
+                require_once __DIR__.'/../paginas/carrito_vacio.php';
+        }else
+            require_once __DIR__.'/../paginas/carrito_vacio.php';
     }
 }
 
@@ -75,7 +78,6 @@ function agregarProducto() {
             if (!$existe) {
                 agregar($pedido);
             }
-            
         }
         header("location:http://www.impuso2015.tk/carrito");
     }
@@ -118,19 +120,21 @@ function eliminarProductosCarrito() {
     }
 }
 
-function agregar($pedido){
+function agregar($pedido) {
     $detallePedido = new Detallepedidos();
-                $detallePedido->setIdpedido($pedido->getIdpedido());
-                $detallePedido->setIdproducto($_GET['idproducto']);
-                $detallePedido->setCantidad(1);
-                $detallePedido->setPrecio(ProductosQuery::create()->findOneByIdproducto($_GET['idproducto'])->getPrecio());
-                $detallePedido->save();
+    $detallePedido->setIdpedido($pedido->getIdpedido());
+    $detallePedido->setIdproducto($_GET['idproducto']);
+    $detallePedido->setCantidad(1);
+    $detallePedido->setPrecio(ProductosQuery::create()->findOneByIdproducto($_GET['idproducto'])->getPrecio());
+    $detallePedido->save();
 }
 
-function mostrarHistorial(){
-  if(isset($_SESSION['usuario']))
-  {
-      $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
-      $pedidos = PedidosQuery::create()->findByIdcliente($usuario->getIdusuario());
-  }
+function mostrarHistorial() {
+    if (isset($_SESSION['usuario'])) {
+        require_once __DIR__.'/../plantillas/header.php';
+        require_once __DIR__.'/../paginas/historial.php';
+        require_once __DIR__.'/../plantillas/footer.php';
+        $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
+        $pedidos = PedidosQuery::create()->findByIdcliente($usuario->getIdusuario());
+    }
 }

@@ -80,6 +80,35 @@ input[placeholder] {
     max-width: 100%;
 }
 
+#pago_transferencia{
+    margin-top: 25px;
+    margin-left: 25%;
+    
+}
+#historial{
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+}
+#historial table{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#historial td{
+    
+    background-color: #b6eeff;
+}
+#historial th{
+    background-color: #0fa1e0;
+}
+#historial td,th{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 
 

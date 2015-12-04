@@ -31,8 +31,8 @@ class ControladorPago {
                 }
             }
         } elseif ($_POST['formadepago'] == 2) {/* pago por depósito o transferencia bancaria */
-        }elseif ($_POST['formadepago']==3)
-        {/**pago con pagadito **/
+            require_once __DIR__ . '/../paginas/pago_transferencia.php';
+        } elseif ($_POST['formadepago'] == 3) {/*         * pago con pagadito * */
             if (isset($_SESSION['usuario'])) {
                 $idusuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])->getIdusuario();
                 $pedido = PedidosQuery::create()->filterByIdcliente($idusuario)->filterByEstado('pendiente')->findOne();
@@ -45,7 +45,7 @@ class ControladorPago {
     }
 
     function mostrarDetalles() {
-        
+
         include __DIR__ . '/../paginas/detallePago.php';
     }
 
@@ -53,6 +53,40 @@ class ControladorPago {
         if (isset($_POST['payment_status'])) {//verifica si fue invocado por Paypal
             if ($_POST['payment_status'] == 'Completed')
                 procesarPagoCompletado();
+        } else if (isset($_POST['pago_transferencia'])) {//verifica si es un pago por tranferencia
+            $idusuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])->getIdusuario();
+            $pedido = PedidosQuery::create()->filterByIdcliente($idusuario)->filterByEstado('pendiente')->findOne();
+            $banco;
+            switch ($_POST['bancos']) {
+                case 1:
+                    $banco = 'Scotiabank';
+                    break;
+                case 2:
+                    $banco = 'Agrícola';
+                    break;
+                case 3:
+                    $banco = 'Citi';
+                    break;
+                case 4:
+                    $banco = 'HSBC';
+                    break;
+                case 5:
+                    $banco = 'Davivienda';
+                    break;
+            }
+            $venta = new Ventas();
+            $venta->setIdpedido($pedido->getIdpedido());
+            $hora = new DateTime();
+            $hora->setTimezone(new DateTimeZone('America/El_Salvador'));
+            $hora->format("Y-m-d H:i:s");
+
+            $venta->setFecha($hora);
+            $venta->setFormapago($banco);
+            $venta->setCodigotransaccion($_POST['txtTransferencia']);
+            $venta->save();
+            $pedido->setEstado('revision');
+            $pedido->save();
+            header("location:http://www.impuso201.tk/");
         } else {
             //fue invocado por la aplicación
             $opcion = isset($_POST['oppago']) ? $_POST['oppago'] : '';
@@ -65,7 +99,7 @@ class ControladorPago {
             }
         }
     }
-    
+
     function __destruct() {
         
     }

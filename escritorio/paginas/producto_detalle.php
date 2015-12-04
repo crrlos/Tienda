@@ -10,6 +10,7 @@
     <br>
     <?= $producto->getDetalle() ?>
     <br>
+    
     <br>
     <b>Precio: </b>$<?= $producto->getPrecio() * $descuento ?>
     <br><br>
