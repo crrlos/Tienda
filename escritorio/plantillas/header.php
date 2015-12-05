@@ -14,11 +14,13 @@
         <script src=" https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script  src="http://www.impuso2015.tk/scripts/responsive_menu_script.js"></script>
         <script   src="http://www.impuso2015.tk/scripts/scripts.js"></script>
-         <script src="http://www.impuso2015.tk/scripts/jquery-1.8.3.min.js" type="text/javascript"></script>
+        <script src="http://www.impuso2015.tk/scripts/jquery-1.8.3.min.js" type="text/javascript"></script>
         <script src="http://www.impuso2015.tk/scripts/jquery.elevatezoom.js" type="text/javascript"></script>
-         
 
 
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+        <script src="http://www.impuso2015.tk/scripts/AndroidToast.js"></script>
+        <link rel="stylesheet" href="http://www.impuso2015.tk/css/AndroidToast.css"/>
         <title>Tienda</title>
 
     </head>
@@ -63,6 +65,6 @@
 
         </nav>
         <body>
-            
+
 
 

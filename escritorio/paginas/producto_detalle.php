@@ -2,7 +2,7 @@
 
 
 <div id="imagen_detalle">
-    <img id="zoom_01"  src="http://www.impuso2015.tk/imagenes/moviles/mouse.png" data-zoom-image="http://www.impuso2015.tk/imagenes/moviles/mouse.png" height="200">
+    <img id="zoom_01"  src="http://www.impuso2015.tk/imagenes/<?=$producto->getIdproducto()?>/small.jpg" data-zoom-image="http://www.impuso2015.tk/imagenes/<?=$producto->getIdproducto()?>/large.jpg" height="200">
 </div>
 <div id="detalle_producto">
     <br>

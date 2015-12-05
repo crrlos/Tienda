@@ -27,7 +27,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductosQuery orderByPrecio($order = Criteria::ASC) Order by the precio column
  * @method     ChildProductosQuery orderByIdsubcategoria($order = Criteria::ASC) Order by the idsubcategoria column
  * @method     ChildProductosQuery orderByIddescuento($order = Criteria::ASC) Order by the iddescuento column
- * @method     ChildProductosQuery orderByImagen($order = Criteria::ASC) Order by the imagen column
  * @method     ChildProductosQuery orderByCantidad($order = Criteria::ASC) Order by the cantidad column
  *
  * @method     ChildProductosQuery groupByIdproducto() Group by the idproducto column
@@ -37,7 +36,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductosQuery groupByPrecio() Group by the precio column
  * @method     ChildProductosQuery groupByIdsubcategoria() Group by the idsubcategoria column
  * @method     ChildProductosQuery groupByIddescuento() Group by the iddescuento column
- * @method     ChildProductosQuery groupByImagen() Group by the imagen column
  * @method     ChildProductosQuery groupByCantidad() Group by the cantidad column
  *
  * @method     ChildProductosQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -90,7 +88,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductos findOneByPrecio(double $precio) Return the first ChildProductos filtered by the precio column
  * @method     ChildProductos findOneByIdsubcategoria(int $idsubcategoria) Return the first ChildProductos filtered by the idsubcategoria column
  * @method     ChildProductos findOneByIddescuento(int $iddescuento) Return the first ChildProductos filtered by the iddescuento column
- * @method     ChildProductos findOneByImagen(string $imagen) Return the first ChildProductos filtered by the imagen column
  * @method     ChildProductos findOneByCantidad(int $cantidad) Return the first ChildProductos filtered by the cantidad column *
 
  * @method     ChildProductos requirePk($key, ConnectionInterface $con = null) Return the ChildProductos by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -103,7 +100,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductos requireOneByPrecio(double $precio) Return the first ChildProductos filtered by the precio column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByIdsubcategoria(int $idsubcategoria) Return the first ChildProductos filtered by the idsubcategoria column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByIddescuento(int $iddescuento) Return the first ChildProductos filtered by the iddescuento column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildProductos requireOneByImagen(string $imagen) Return the first ChildProductos filtered by the imagen column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByCantidad(int $cantidad) Return the first ChildProductos filtered by the cantidad column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildProductos[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildProductos objects based on current ModelCriteria
@@ -114,7 +110,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductos[]|ObjectCollection findByPrecio(double $precio) Return ChildProductos objects filtered by the precio column
  * @method     ChildProductos[]|ObjectCollection findByIdsubcategoria(int $idsubcategoria) Return ChildProductos objects filtered by the idsubcategoria column
  * @method     ChildProductos[]|ObjectCollection findByIddescuento(int $iddescuento) Return ChildProductos objects filtered by the iddescuento column
- * @method     ChildProductos[]|ObjectCollection findByImagen(string $imagen) Return ChildProductos objects filtered by the imagen column
  * @method     ChildProductos[]|ObjectCollection findByCantidad(int $cantidad) Return ChildProductos objects filtered by the cantidad column
  * @method     ChildProductos[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
@@ -208,7 +203,7 @@ abstract class ProductosQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT idproducto, nombre, detalle, descripcion, precio, idsubcategoria, iddescuento, imagen, cantidad FROM productos WHERE idproducto = :p0';
+        $sql = 'SELECT idproducto, nombre, detalle, descripcion, precio, idsubcategoria, iddescuento, cantidad FROM productos WHERE idproducto = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -551,35 +546,6 @@ abstract class ProductosQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProductosTableMap::COL_IDDESCUENTO, $iddescuento, $comparison);
-    }
-
-    /**
-     * Filter the query on the imagen column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByImagen('fooValue');   // WHERE imagen = 'fooValue'
-     * $query->filterByImagen('%fooValue%'); // WHERE imagen LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $imagen The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildProductosQuery The current query, for fluid interface
-     */
-    public function filterByImagen($imagen = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($imagen)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $imagen)) {
-                $imagen = str_replace('*', '%', $imagen);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(ProductosTableMap::COL_IMAGEN, $imagen, $comparison);
     }
 
     /**

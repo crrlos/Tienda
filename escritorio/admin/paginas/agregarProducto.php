@@ -84,7 +84,7 @@
                 Imagen:
             </td>
             <td>
-                <input type="file" name="imagen">
+                <input type="file" name="imagen" required="">
             </td>
             
                 

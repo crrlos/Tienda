@@ -18,7 +18,7 @@
                     <td>
                         <div id="producto">
                             <b><?= $producto->getNombre() ?></b><br>
-                            <img src="http://www.impuso2015.tk/imagenes/moviles/mouse.png" width="100"><br>
+                            <img src="http://www.impuso2015.tk/imagenes/<?= $producto->getIdproducto()?>/small.jpg" width="100"><br>
                             <hr>
                             descripción del artículo
                             <br>

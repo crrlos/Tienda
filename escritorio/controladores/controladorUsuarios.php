@@ -33,6 +33,12 @@ switch ($opcion) {
     case 6:
         cerrarSesion();
         break;
+    case 7:
+        comprobarNombre();
+        break;
+       case 8:
+        comprobarEmail();
+        break;
 }
 
 function login() {
@@ -137,4 +143,53 @@ function cambiarClave() {
 function cerrarSesion() {
     session_destroy();
     header("location:http://www.impuso2015.tk");
+}
+function comprobarNombre(){
+    $ok;
+    if(isset($_SESSION['usuario']))
+    {
+        $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
+        if($usuario->getNombreusuario() == $_POST['usuario']){
+            $ok = 0;
+        }else{
+             $usuario = UsuariosQuery::create()->findOneByNombreusuario($_POST['usuario']);
+             if(isset($usuario))
+                 $ok = 1;
+             else 
+                 $ok = 0;
+        }
+    }else{
+    $usuario = UsuariosQuery::create()->findOneByNombreusuario($_POST['usuario']);
+    if(isset($usuario))
+        $ok = 1;
+    else
+        $ok = 0;
+    }
+    
+    echo $ok;
+}
+function comprobarEmail(){
+     $ok;
+    if(isset($_SESSION['usuario']))
+    {
+        $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
+        if($usuario->getEmail() == $_POST['email']){
+            $ok = 0;
+        }else{
+             $usuario = UsuariosQuery::create()->findOneByNombreusuario($_POST['email']);
+             if(isset($usuario))
+                 $ok = 1;
+             else 
+                 $ok = 0;
+        }
+    }else{
+    $usuario = UsuariosQuery::create()->findOneByNombreusuario($_POST['email']);
+    if(isset($usuario))
+        $ok = 1;
+    else
+        $ok = 0;
+    }
+    
+    echo $ok;
+
 }

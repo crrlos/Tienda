@@ -117,13 +117,6 @@ abstract class Productos implements ActiveRecordInterface
     protected $iddescuento;
 
     /**
-     * The value for the imagen field.
-     *
-     * @var        string
-     */
-    protected $imagen;
-
-    /**
      * The value for the cantidad field.
      *
      * @var        int
@@ -448,16 +441,6 @@ abstract class Productos implements ActiveRecordInterface
     }
 
     /**
-     * Get the [imagen] column value.
-     *
-     * @return string
-     */
-    public function getImagen()
-    {
-        return $this->imagen;
-    }
-
-    /**
      * Get the [cantidad] column value.
      *
      * @return int
@@ -616,26 +599,6 @@ abstract class Productos implements ActiveRecordInterface
     } // setIddescuento()
 
     /**
-     * Set the value of [imagen] column.
-     *
-     * @param string $v new value
-     * @return $this|\Productos The current object (for fluent API support)
-     */
-    public function setImagen($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->imagen !== $v) {
-            $this->imagen = $v;
-            $this->modifiedColumns[ProductosTableMap::COL_IMAGEN] = true;
-        }
-
-        return $this;
-    } // setImagen()
-
-    /**
      * Set the value of [cantidad] column.
      *
      * @param int $v new value
@@ -712,10 +675,7 @@ abstract class Productos implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : ProductosTableMap::translateFieldName('Iddescuento', TableMap::TYPE_PHPNAME, $indexType)];
             $this->iddescuento = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : ProductosTableMap::translateFieldName('Imagen', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->imagen = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : ProductosTableMap::translateFieldName('Cantidad', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : ProductosTableMap::translateFieldName('Cantidad', TableMap::TYPE_PHPNAME, $indexType)];
             $this->cantidad = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
@@ -725,7 +685,7 @@ abstract class Productos implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 9; // 9 = ProductosTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 8; // 8 = ProductosTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Productos'), 0, $e);
@@ -963,10 +923,6 @@ abstract class Productos implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[ProductosTableMap::COL_IDPRODUCTO] = true;
-        if (null !== $this->idproducto) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . ProductosTableMap::COL_IDPRODUCTO . ')');
-        }
 
          // check the columns in natural order for more readable SQL queries
         if ($this->isColumnModified(ProductosTableMap::COL_IDPRODUCTO)) {
@@ -989,9 +945,6 @@ abstract class Productos implements ActiveRecordInterface
         }
         if ($this->isColumnModified(ProductosTableMap::COL_IDDESCUENTO)) {
             $modifiedColumns[':p' . $index++]  = 'iddescuento';
-        }
-        if ($this->isColumnModified(ProductosTableMap::COL_IMAGEN)) {
-            $modifiedColumns[':p' . $index++]  = 'imagen';
         }
         if ($this->isColumnModified(ProductosTableMap::COL_CANTIDAD)) {
             $modifiedColumns[':p' . $index++]  = 'cantidad';
@@ -1028,9 +981,6 @@ abstract class Productos implements ActiveRecordInterface
                     case 'iddescuento':
                         $stmt->bindValue($identifier, $this->iddescuento, PDO::PARAM_INT);
                         break;
-                    case 'imagen':
-                        $stmt->bindValue($identifier, $this->imagen, PDO::PARAM_STR);
-                        break;
                     case 'cantidad':
                         $stmt->bindValue($identifier, $this->cantidad, PDO::PARAM_INT);
                         break;
@@ -1041,13 +991,6 @@ abstract class Productos implements ActiveRecordInterface
             Propel::log($e->getMessage(), Propel::LOG_ERR);
             throw new PropelException(sprintf('Unable to execute INSERT statement [%s]', $sql), 0, $e);
         }
-
-        try {
-            $pk = $con->lastInsertId();
-        } catch (Exception $e) {
-            throw new PropelException('Unable to get autoincrement id.', 0, $e);
-        }
-        $this->setIdproducto($pk);
 
         $this->setNew(false);
     }
@@ -1118,9 +1061,6 @@ abstract class Productos implements ActiveRecordInterface
                 return $this->getIddescuento();
                 break;
             case 7:
-                return $this->getImagen();
-                break;
-            case 8:
                 return $this->getCantidad();
                 break;
             default:
@@ -1160,8 +1100,7 @@ abstract class Productos implements ActiveRecordInterface
             $keys[4] => $this->getPrecio(),
             $keys[5] => $this->getIdsubcategoria(),
             $keys[6] => $this->getIddescuento(),
-            $keys[7] => $this->getImagen(),
-            $keys[8] => $this->getCantidad(),
+            $keys[7] => $this->getCantidad(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1270,9 +1209,6 @@ abstract class Productos implements ActiveRecordInterface
                 $this->setIddescuento($value);
                 break;
             case 7:
-                $this->setImagen($value);
-                break;
-            case 8:
                 $this->setCantidad($value);
                 break;
         } // switch()
@@ -1323,10 +1259,7 @@ abstract class Productos implements ActiveRecordInterface
             $this->setIddescuento($arr[$keys[6]]);
         }
         if (array_key_exists($keys[7], $arr)) {
-            $this->setImagen($arr[$keys[7]]);
-        }
-        if (array_key_exists($keys[8], $arr)) {
-            $this->setCantidad($arr[$keys[8]]);
+            $this->setCantidad($arr[$keys[7]]);
         }
     }
 
@@ -1389,9 +1322,6 @@ abstract class Productos implements ActiveRecordInterface
         }
         if ($this->isColumnModified(ProductosTableMap::COL_IDDESCUENTO)) {
             $criteria->add(ProductosTableMap::COL_IDDESCUENTO, $this->iddescuento);
-        }
-        if ($this->isColumnModified(ProductosTableMap::COL_IMAGEN)) {
-            $criteria->add(ProductosTableMap::COL_IMAGEN, $this->imagen);
         }
         if ($this->isColumnModified(ProductosTableMap::COL_CANTIDAD)) {
             $criteria->add(ProductosTableMap::COL_CANTIDAD, $this->cantidad);
@@ -1482,13 +1412,13 @@ abstract class Productos implements ActiveRecordInterface
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
+        $copyObj->setIdproducto($this->getIdproducto());
         $copyObj->setNombre($this->getNombre());
         $copyObj->setDetalle($this->getDetalle());
         $copyObj->setDescripcion($this->getDescripcion());
         $copyObj->setPrecio($this->getPrecio());
         $copyObj->setIdsubcategoria($this->getIdsubcategoria());
         $copyObj->setIddescuento($this->getIddescuento());
-        $copyObj->setImagen($this->getImagen());
         $copyObj->setCantidad($this->getCantidad());
 
         if ($deepCopy) {
@@ -1506,7 +1436,6 @@ abstract class Productos implements ActiveRecordInterface
 
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setIdproducto(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1913,7 +1842,6 @@ abstract class Productos implements ActiveRecordInterface
         $this->precio = null;
         $this->idsubcategoria = null;
         $this->iddescuento = null;
-        $this->imagen = null;
         $this->cantidad = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();

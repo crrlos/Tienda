@@ -11,45 +11,52 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
     }
     ?>
 </div>
-<div id="login">
+<div id="registro_usuario">
     <table>
-        <form action ="/controladores/controladorUsuarios.php" method="post">
+        <form action ="/controladores/controladorUsuarios.php" method="POST" onsubmit="return validar()">
             <input type="hidden" name="opusuario" value="<?= $nombreUsuario!=null?"3":2?>">
+            <input type="hidden" name="ok_usuario" id="ok_usuario">
+            <input type="hidden" name="ok_email" id="ok_email">
             <tr>
                 <td>Usuario:</td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="nombreusuario" value="<?= $usuario != null?$usuario->getNombreusuario():'' ?>">
-                </td>
+                    <input type="text" required="" id="nombreusuario" name="nombreusuario" value="<?= $usuario != null?$usuario->getNombreusuario():'' ?>">
+                    <div id="estado_usuario"></div>
+                  </td>
             </tr>
             <tr>
                 <td>Nombres:</td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="nombres" value="<?= $usuario != null?$usuario->getNombres():'' ?>">
+                    <input type="text" name="nombres" required="" value="<?= $usuario != null?$usuario->getNombres():'' ?>">
                 </td>
             </tr>
             <tr>
                 <td>Apellidos:</td>
             </tr>
             <tr>
-                <td><input type="text" name="apellidos" value="<?= $usuario != null?$usuario->getApellidos():'' ?>"></td>
+                <td><input type="text" name="apellidos" required="" value="<?= $usuario != null?$usuario->getApellidos():'' ?>"></td>
             </tr>
             <tr>
                 <td>Teléfono:</td>
             </tr>
             <tr>
                 <td>
-                    <input type="text" name="telefono" value="<?= $usuario != null?$usuario->getTelefono():'' ?>">
+                    <input type="text" name="telefono" required="" value="<?= $usuario != null?$usuario->getTelefono():'' ?>">
                 </td>
             </tr>
             <tr>
                 <td>Email:</td>
             </tr>
             <tr>
-                <td><input type="text" name="email" value="<?= $usuario != null?$usuario->getEmail():'' ?>"></td>
+                <td>
+                    <input id="email" type="text" name="email" required="" value="<?= $usuario != null?$usuario->getEmail():'' ?>">
+                    <div id="estado_email"></div>
+                </td>
+                
             </tr>
             <tr>
                 <td>Direccion:</td>
@@ -57,7 +64,7 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
             
             <tr>
                 <td>
-                    <textarea rows="2" cols="40" name="direccion" value="<?= $usuario != null?$usuario->getDireccion():'' ?>">
+                    <textarea rows="2" cols="40" name="direccion" value="<?= $usuario != null?$usuario->getDireccion():''?>">
                         
                     </textarea>
                     
@@ -70,7 +77,7 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
             </tr>
             <tr>
                 <td>
-                    <input type="password" name="clave">
+                    <input type="password" name="clave" required="">
                 </td>
             </tr>
             <tr>
@@ -80,7 +87,7 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
             </tr>
             <tr>
                 <td>
-                    <input type="password" name="confirmacionClave">
+                    <input type="password" name="confirmacionClave" required="">
                 </td>
             </tr>
             <tr>

@@ -43,7 +43,7 @@ function agregarProducto() {
     
     if(!file_exists($directorio)){
         mkdir ($directorio);
-       
+        
     }
     $target_path = $directorio;
     if (move_uploaded_file($_FILES['imagen']['tmp_name'], $directorio.'large.jpg')) {
@@ -109,9 +109,16 @@ function agregarProducto() {
 	//Se crea la imagen final en el directorio indicado
 	imagejpeg($tmp,$directorio.'small.jpg',$calidad);
         
+        $url_imagen = $_SERVER['SERVER_NAME'].'/imagenes/'.$_POST['codigo'].'/';
         
         $producto = new Productos();
+        $producto->setIdproducto($_POST['codigo']);
         $producto->setnombre($_POST['nombre']);
         $producto->setDetalle($_POST['detalle']);
         $producto->setDescripcion($_POST['descripcion']);
+        $producto->setPrecio($_POST['precio']);
+        $producto->setIdsubcategoria(1);
+        $producto->setIddescuento(1);
+        $producto->setCantidad($_POST['cantidad']);
+        $producto->save();
 }

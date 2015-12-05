@@ -65,14 +65,13 @@
     </vendor>
   </table>
   <table name="productos" idMethod="native" phpName="Productos">
-    <column name="idproducto" phpName="Idproducto" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="idproducto" phpName="Idproducto" type="INTEGER" primaryKey="true" required="true"/>
     <column name="nombre" phpName="Nombre" type="VARCHAR" size="200"/>
     <column name="detalle" phpName="Detalle" type="VARCHAR" size="5000"/>
     <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="500"/>
     <column name="precio" phpName="Precio" type="DOUBLE" size="7" scale="2"/>
     <column name="idsubcategoria" phpName="Idsubcategoria" type="INTEGER"/>
     <column name="iddescuento" phpName="Iddescuento" type="INTEGER"/>
-    <column name="imagen" phpName="Imagen" type="VARCHAR" size="500"/>
     <column name="cantidad" phpName="Cantidad" type="INTEGER" size="10" sqlType="int(10) unsigned" required="true"/>
     <foreign-key foreignTable="descuentos" name="fk_descuento">
       <reference local="iddescuento" foreign="iddescuento"/>
