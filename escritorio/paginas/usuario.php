@@ -13,9 +13,9 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
 </div>
 <div id="registro_usuario">
     <table>
-        <form action ="/controladores/controladorUsuarios.php" method="POST" onsubmit="return validar()">
+        <form action ="/controladores/controladorUsuarios.php" method="POST" onsubmit="return validar()" name="form1">
             <input type="hidden" name="opusuario" value="<?= $nombreUsuario!=null?"3":2?>">
-            <input type="hidden" name="ok_usuario" id="ok_usuario">
+            <input type="hidden" name="ok_usuario" id="ok_usuario" value="">
             <input type="hidden" name="ok_email" id="ok_email">
             <tr>
                 <td>Usuario:</td>

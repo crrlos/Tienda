@@ -2,6 +2,7 @@ body{
     background: #333333;
 }
 #wrapper{
+  
     margin-left: auto;
     margin-right: auto;
     max-width: 75%;
@@ -31,6 +32,15 @@ box-shadow: 6px 9px 5px 0px rgba(0,0,0,0.75);
     border: none;
     
 }
+#buscar{
+    position: absolute;
+   border-style: solid;
+   height: 30px;
+   width: 350px;
+   left: 30%;
+   bottom: 5px;
+  
+}
 input::-webkit-input-placeholder {
     color: #89caef;
 }
@@ -50,21 +60,13 @@ input[placeholder] {
 	:-ms-input-placeholder { color:#555; } /* ie */
 	input:-moz-placeholder { color:#555; }
 }
-#buscar{
-    position: absolute;
-   border-style: solid;
-   height: 30px;
-   width: 350px;
-   left: 30%;
-   bottom: 5px;
-  
-}
+
 #acceso{
     position: absolute;
     right: 0;
     border-style: solid;
-    width: 200px;
-    height: 50px;
+    width: 220px;
+    height: 60px;
 }
 #login{
     
@@ -141,13 +143,21 @@ input[placeholder] {
     padding-right: 50px;
 }
 #producto{
-   width: 200px;
+   max-width: 200px;
+
 }
 #divproductos{
      text-align: center;
      margin-left: auto;
      margin-right: auto;
-     width: 90%;
+     max-width: 90%;
+     height: 500px;
+     
+   
+}
+#divproductos table{
+    margin-left: auto;
+    margin-right: auto;
 }
 #tablaproductos{
    border-collapse: separate;
@@ -366,4 +376,34 @@ input[placeholder] {
 }
 #estado_email{
     float:right;
+}
+
+#fecha{
+    float:left;
+        width: 50%;
+        text-align: center;
+}
+#estado{
+    width: 50%;
+    text-align: center;
+    float:right;
+}
+#footer{
+position: relative;
+bottom: -60px;
+height: 30px;
+width: 100%;;
+}
+#cambio_clave{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 25px;
+  
+}
+#recuperar{
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-top: 25px;
 }

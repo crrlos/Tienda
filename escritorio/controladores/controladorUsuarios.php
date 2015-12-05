@@ -49,8 +49,13 @@ function login() {
         if (sha1($_POST['clave']) == $usuario->getClave()) {
             $_SESSION['usuario'] = $usuario->getNombreusuario();
             header("location:http://www.impuso2015.tk");
+        }else{
+            header("location:http://www.impuso2015.tk/error_login");
         }
+    }else{
+        header("location:http://www.impuso2015.tk/error_login");
     }
+    
 }
 
 function registrar() {
@@ -96,8 +101,10 @@ function recuperar() {
     try {
         $usuario = UsuariosQuery::create()->findOneByEmail($_GET['correo']);
         if ($usuario != null) {
-            $cadena = sha1($usuario->getClave() . $usuario->getNombreusuario());
-
+            $cadena = sha1($usuario->getClave().$usuario->getNombreusuario());
+            
+            HashQuery::create()->findByIdusuario($usuario->getIdusuario())->delete();
+            
             $hash = new Hash();
             $hash->setIdusuario($usuario->getIdusuario());
             $hash->setHash($cadena);
@@ -136,7 +143,10 @@ function cambiarClave() {
             $user->setClave(sha1($_POST['clave']));
             $user->save();
             $usuario->delete();
-        }
+            header("location:http://www.impuso2015.tk/recuperacion/".$_POST['hash'].'/3');
+        }else
+             header("location:http://www.impuso2015.tk/recuperacion/".$_POST['hash'].'/2');
+            
     }
 }
 
@@ -183,7 +193,7 @@ function comprobarEmail(){
                  $ok = 0;
         }
     }else{
-    $usuario = UsuariosQuery::create()->findOneByNombreusuario($_POST['email']);
+    $usuario = UsuariosQuery::create()->findOneByEmail($_POST['email']);
     if(isset($usuario))
         $ok = 1;
     else

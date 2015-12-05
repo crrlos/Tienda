@@ -3,16 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/Tienda/escritorio/admin/paginas/header.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/index.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/css/style.css</file>
             <file>file:/C:/wamp/www/Tienda/escritorio/scripts/scripts.js</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/controladores/controladorUsuarios.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/.htaccess</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/paginas/error.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/paginas/recuperar_clave.php</file>
             <file>file:/C:/wamp/www/Tienda/escritorio/paginas/productos.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/controladores/controladorUsuarios.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/paginas/usuario.php</file>
             <file>file:/C:/wamp/www/Tienda/escritorio/plantillas/header.php</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/admin/paginas/footer.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/paginas/cambio_clave.php</file>
             <file>file:/C:/wamp/www/Tienda/escritorio/controladores/controladorProductos.php</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/paginas/producto_detalle.php</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/admin/index.php</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/admin/paginas/agregarProducto.php</file>
         </group>
     </open-files>
 </project-private>

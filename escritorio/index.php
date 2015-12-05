@@ -48,6 +48,9 @@ switch ($opcion) {
         break;
     case 'detalle':
         break;
+    case 'notfound':
+         include('./paginas/error.php');
+        break;
     default:
       
 }

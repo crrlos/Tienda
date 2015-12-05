@@ -18,9 +18,9 @@
         <script src="http://www.impuso2015.tk/scripts/jquery.elevatezoom.js" type="text/javascript"></script>
 
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-        <script src="http://www.impuso2015.tk/scripts/AndroidToast.js"></script>
-        <link rel="stylesheet" href="http://www.impuso2015.tk/css/AndroidToast.css"/>
+
+        <script src="http://www.impuso2015.tk/scripts/jquery.cftoaster.1.0.1.min.js"></script>
+        <link rel="stylesheet" href="http://www.impuso2015.tk/css/jquery.cftoaster.1.0.1.css"/>
         <title>Tienda</title>
 
     </head>
@@ -54,7 +54,12 @@
                             require_once __DIR__ . '/menu_login.php';
                         } else
                             require_once __DIR__ . '/menu_usuario.php';
+                        if (isset($_GET['control'])) {
+                            if ($_GET['control'] == 1)
+                                echo '<font color="red">usuario ó contraseña incorrectos</font>';
+                        }
                         ?>
+
                     </div>
                 </div>
             </div>

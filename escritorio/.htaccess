@@ -6,12 +6,13 @@ ExpiresByType image/gif "access plus 1 month"
 ExpiresByType image/png "access plus 1 month" 
 ExpiresByType text/css "access plus 1 month" 
 
-ErrorDocument 404 /paginas/error.php
+ErrorDocument 404 /index.php?opcion=notfound
 
 RewriteEngine on
 
 
-RewriteRule ^/?$ index.php
+RewriteRule ^/$ index.php
+RewriteRule ^error_login$ index.php?control=1
 RewriteRule ^registro/?$ index.php?opcion=registro&user=registro
 RewriteRule ^login/?$ index.php?opcion=login
 RewriteRule ^productos/(.*)/(.*)/?$ index.php?opcion=productos&subcategoria=$1&pagina=$2
@@ -24,9 +25,9 @@ RewriteRule ^testing/?$ /controladores/testing.php
 RewriteRule ^pago/?$ index.php?opcion=pago
 Rewriterule ^actualizar/?(.*)/?$ index.php?opcion=actualizar&estado=$1
 RewriteRule ^forgot/?$ index.php?opcion=recuperar&opusuario=4
-RewriteRule ^forgot/error?$ index.php?opcion=recuperar&estado=0
-RewriteRule ^forgot/correcto?$ index.php?opcion=recuperar&estado=1
-RewriteRule ^recuperacion/(.*)/?$ index.php?opcion=cambiar&hash=$1
+RewriteRule ^forgot/error$ index.php?opcion=recuperar&estado=0
+RewriteRule ^forgot/correcto$ index.php?opcion=recuperar&estado=1
+RewriteRule ^recuperacion/(.*)/(.*)?$ index.php?opcion=cambiar&hash=$1&estado=$2
 RewriteRule ^detalles/producto/(.*)/?$ /controladores/controladorProductos.php?opproducto=1&idproducto=$1
 RewriteRule ^history/?$ /controladores/controladorPedidos.php?opcarrito=3
 RewriteRule ^success/?$ index.php?opcion=pago_completado

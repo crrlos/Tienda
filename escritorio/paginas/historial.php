@@ -1,10 +1,8 @@
 <div id="historial">
-    
+    <div id="fecha"><b>Fecha:</b> 22-15-2015</div>
+    <div id="estado"><b>Estado:</b> pendiente de revision</div>
     <table>
-        <tr>
-            <td colspan="3">Fecha del pedido: 22-15-2015</td>
-            
-        </tr>
+       
         <tr>
             <th>artículo</th>
             <th>cantidad</th>
