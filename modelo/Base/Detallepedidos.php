@@ -80,7 +80,7 @@ abstract class Detallepedidos implements ActiveRecordInterface
     /**
      * The value for the idproducto field.
      *
-     * @var        int
+     * @var        string
      */
     protected $idproducto;
 
@@ -99,14 +99,14 @@ abstract class Detallepedidos implements ActiveRecordInterface
     protected $precio;
 
     /**
-     * @var        ChildPedidos
-     */
-    protected $aPedidos;
-
-    /**
      * @var        ChildProductos
      */
     protected $aProductos;
+
+    /**
+     * @var        ChildPedidos
+     */
+    protected $aPedidos;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -356,7 +356,7 @@ abstract class Detallepedidos implements ActiveRecordInterface
     /**
      * Get the [idproducto] column value.
      *
-     * @return int
+     * @return string
      */
     public function getIdproducto()
     {
@@ -430,13 +430,13 @@ abstract class Detallepedidos implements ActiveRecordInterface
     /**
      * Set the value of [idproducto] column.
      *
-     * @param int $v new value
+     * @param string $v new value
      * @return $this|\Detallepedidos The current object (for fluent API support)
      */
     public function setIdproducto($v)
     {
         if ($v !== null) {
-            $v = (int) $v;
+            $v = (string) $v;
         }
 
         if ($this->idproducto !== $v) {
@@ -534,7 +534,7 @@ abstract class Detallepedidos implements ActiveRecordInterface
             $this->idpedido = (null !== $col) ? (int) $col : null;
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : DetallepedidosTableMap::translateFieldName('Idproducto', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->idproducto = (null !== $col) ? (int) $col : null;
+            $this->idproducto = (null !== $col) ? (string) $col : null;
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : DetallepedidosTableMap::translateFieldName('Cantidad', TableMap::TYPE_PHPNAME, $indexType)];
             $this->cantidad = (null !== $col) ? (int) $col : null;
@@ -616,8 +616,8 @@ abstract class Detallepedidos implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aPedidos = null;
             $this->aProductos = null;
+            $this->aPedidos = null;
         } // if (deep)
     }
 
@@ -722,18 +722,18 @@ abstract class Detallepedidos implements ActiveRecordInterface
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aPedidos !== null) {
-                if ($this->aPedidos->isModified() || $this->aPedidos->isNew()) {
-                    $affectedRows += $this->aPedidos->save($con);
-                }
-                $this->setPedidos($this->aPedidos);
-            }
-
             if ($this->aProductos !== null) {
                 if ($this->aProductos->isModified() || $this->aProductos->isNew()) {
                     $affectedRows += $this->aProductos->save($con);
                 }
                 $this->setProductos($this->aProductos);
+            }
+
+            if ($this->aPedidos !== null) {
+                if ($this->aPedidos->isModified() || $this->aPedidos->isNew()) {
+                    $affectedRows += $this->aPedidos->save($con);
+                }
+                $this->setPedidos($this->aPedidos);
             }
 
             if ($this->isNew() || $this->isModified()) {
@@ -806,7 +806,7 @@ abstract class Detallepedidos implements ActiveRecordInterface
                         $stmt->bindValue($identifier, $this->idpedido, PDO::PARAM_INT);
                         break;
                     case 'idproducto':
-                        $stmt->bindValue($identifier, $this->idproducto, PDO::PARAM_INT);
+                        $stmt->bindValue($identifier, $this->idproducto, PDO::PARAM_STR);
                         break;
                     case 'cantidad':
                         $stmt->bindValue($identifier, $this->cantidad, PDO::PARAM_INT);
@@ -933,21 +933,6 @@ abstract class Detallepedidos implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->aPedidos) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'pedidos';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'pedidos';
-                        break;
-                    default:
-                        $key = 'Pedidos';
-                }
-
-                $result[$key] = $this->aPedidos->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
             if (null !== $this->aProductos) {
 
                 switch ($keyType) {
@@ -962,6 +947,21 @@ abstract class Detallepedidos implements ActiveRecordInterface
                 }
 
                 $result[$key] = $this->aProductos->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
+            if (null !== $this->aPedidos) {
+
+                switch ($keyType) {
+                    case TableMap::TYPE_CAMELNAME:
+                        $key = 'pedidos';
+                        break;
+                    case TableMap::TYPE_FIELDNAME:
+                        $key = 'pedidos';
+                        break;
+                    default:
+                        $key = 'Pedidos';
+                }
+
+                $result[$key] = $this->aPedidos->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
         }
 
@@ -1228,6 +1228,57 @@ abstract class Detallepedidos implements ActiveRecordInterface
     }
 
     /**
+     * Declares an association between this object and a ChildProductos object.
+     *
+     * @param  ChildProductos $v
+     * @return $this|\Detallepedidos The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setProductos(ChildProductos $v = null)
+    {
+        if ($v === null) {
+            $this->setIdproducto(NULL);
+        } else {
+            $this->setIdproducto($v->getIdproducto());
+        }
+
+        $this->aProductos = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the ChildProductos object, it will not be re-added.
+        if ($v !== null) {
+            $v->addDetallepedidos($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated ChildProductos object
+     *
+     * @param  ConnectionInterface $con Optional Connection object.
+     * @return ChildProductos The associated ChildProductos object.
+     * @throws PropelException
+     */
+    public function getProductos(ConnectionInterface $con = null)
+    {
+        if ($this->aProductos === null && (($this->idproducto !== "" && $this->idproducto !== null))) {
+            $this->aProductos = ChildProductosQuery::create()->findPk($this->idproducto, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aProductos->addDetallepedidoss($this);
+             */
+        }
+
+        return $this->aProductos;
+    }
+
+    /**
      * Declares an association between this object and a ChildPedidos object.
      *
      * @param  ChildPedidos $v
@@ -1279,68 +1330,17 @@ abstract class Detallepedidos implements ActiveRecordInterface
     }
 
     /**
-     * Declares an association between this object and a ChildProductos object.
-     *
-     * @param  ChildProductos $v
-     * @return $this|\Detallepedidos The current object (for fluent API support)
-     * @throws PropelException
-     */
-    public function setProductos(ChildProductos $v = null)
-    {
-        if ($v === null) {
-            $this->setIdproducto(NULL);
-        } else {
-            $this->setIdproducto($v->getIdproducto());
-        }
-
-        $this->aProductos = $v;
-
-        // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the ChildProductos object, it will not be re-added.
-        if ($v !== null) {
-            $v->addDetallepedidos($this);
-        }
-
-
-        return $this;
-    }
-
-
-    /**
-     * Get the associated ChildProductos object
-     *
-     * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildProductos The associated ChildProductos object.
-     * @throws PropelException
-     */
-    public function getProductos(ConnectionInterface $con = null)
-    {
-        if ($this->aProductos === null && ($this->idproducto !== null)) {
-            $this->aProductos = ChildProductosQuery::create()->findPk($this->idproducto, $con);
-            /* The following can be used additionally to
-                guarantee the related object contains a reference
-                to this object.  This level of coupling may, however, be
-                undesirable since it could result in an only partially populated collection
-                in the referenced object.
-                $this->aProductos->addDetallepedidoss($this);
-             */
-        }
-
-        return $this->aProductos;
-    }
-
-    /**
      * Clears the current object, sets all attributes to their default values and removes
      * outgoing references as well as back-references (from other objects to this one. Results probably in a database
      * change of those foreign objects when you call `save` there).
      */
     public function clear()
     {
-        if (null !== $this->aPedidos) {
-            $this->aPedidos->removeDetallepedidos($this);
-        }
         if (null !== $this->aProductos) {
             $this->aProductos->removeDetallepedidos($this);
+        }
+        if (null !== $this->aPedidos) {
+            $this->aPedidos->removeDetallepedidos($this);
         }
         $this->iddetallepedido = null;
         $this->idpedido = null;
@@ -1367,8 +1367,8 @@ abstract class Detallepedidos implements ActiveRecordInterface
         if ($deep) {
         } // if ($deep)
 
-        $this->aPedidos = null;
         $this->aProductos = null;
+        $this->aPedidos = null;
     }
 
     /**

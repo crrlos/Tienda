@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/Tienda/escritorio/admin/paginas/header.php</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/scripts/scripts.js</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/controladores/controladorCategorias.php</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/admin/scripts/scripts.js</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/controladores/controladorProductos.php</file>
-            <file>file:/C:/wamp/www/Tienda/escritorio/admin/index.php</file>
+            <file>file:/C:/wamp/www/Tienda/escritorio/controladores/controladorUsuarios.php</file>
             <file>file:/C:/wamp/www/Tienda/escritorio/admin/paginas/agregarProducto.php</file>
         </group>
     </open-files>

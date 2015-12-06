@@ -5,7 +5,9 @@ require_once 'config.php';
 class ControladorPago {
 
     function procesarPagoCompletado() {
-
+$rol = new Roles();
+            $rol->setRol('paypal-c');
+            $rol->save();
         $idusuario = $_POST['custom'];
         $pedido = PedidosQuery::create()->filterByEstado('pendiente')->filterByIdcliente($idusuario)->findOne();
         $pedido->setEstado('cancelado');
@@ -45,14 +47,14 @@ class ControladorPago {
     }
 
     function mostrarDetalles() {
-
+        
         include __DIR__ . '/../paginas/detallePago.php';
     }
 
     function iniciar() {
         if (isset($_POST['payment_status'])) {//verifica si fue invocado por Paypal
             if ($_POST['payment_status'] == 'Completed')
-                procesarPagoCompletado();
+                $this->procesarPagoCompletado();
         } else if (isset($_POST['pago_transferencia'])) {//verifica si es un pago por tranferencia
             $idusuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])->getIdusuario();
             $pedido = PedidosQuery::create()->filterByIdcliente($idusuario)->filterByEstado('pendiente')->findOne();
@@ -86,7 +88,7 @@ class ControladorPago {
             $venta->save();
             $pedido->setEstado('revision');
             $pedido->save();
-            header("location:http://www.impuso201.tk/");
+            header("location:http://www.impuso2015.tk/pago/pendiente");
         } else {
             //fue invocado por la aplicación
             $opcion = isset($_POST['oppago']) ? $_POST['oppago'] : '';

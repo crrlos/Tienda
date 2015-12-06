@@ -112,6 +112,7 @@ function agregarProducto() {
         $url_imagen = $_SERVER['SERVER_NAME'].'/imagenes/'.$_POST['codigo'].'/';
         
         $producto = new Productos();
+        echo $_POST['codigo'];
         $producto->setIdproducto($_POST['codigo']);
         $producto->setnombre($_POST['nombre']);
         $producto->setDetalle($_POST['detalle']);

@@ -148,7 +148,7 @@ class DetallepedidosTableMap extends TableMap
         // columns
         $this->addPrimaryKey('iddetallepedido', 'Iddetallepedido', 'INTEGER', true, null, null);
         $this->addForeignKey('idpedido', 'Idpedido', 'INTEGER', 'pedidos', 'idpedido', false, null, null);
-        $this->addForeignKey('idproducto', 'Idproducto', 'INTEGER', 'productos', 'idproducto', false, null, null);
+        $this->addForeignKey('idproducto', 'Idproducto', 'VARCHAR', 'productos', 'idproducto', false, 50, null);
         $this->addColumn('cantidad', 'Cantidad', 'INTEGER', false, null, null);
         $this->addColumn('precio', 'Precio', 'DOUBLE', false, 7, null);
     } // initialize()
@@ -158,18 +158,18 @@ class DetallepedidosTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Pedidos', '\\Pedidos', RelationMap::MANY_TO_ONE, array (
-  0 =>
-  array (
-    0 => ':idpedido',
-    1 => ':idpedido',
-  ),
-), null, null, null, false);
         $this->addRelation('Productos', '\\Productos', RelationMap::MANY_TO_ONE, array (
   0 =>
   array (
     0 => ':idproducto',
     1 => ':idproducto',
+  ),
+), null, null, null, false);
+        $this->addRelation('Pedidos', '\\Pedidos', RelationMap::MANY_TO_ONE, array (
+  0 =>
+  array (
+    0 => ':idpedido',
+    1 => ':idpedido',
   ),
 ), null, null, null, false);
     } // buildRelations()

@@ -18,14 +18,14 @@
                     <td>
                         <div id="producto">
                             <b><?= $producto->getNombre() ?></b><br>
-                            <img src="http://www.impuso2015.tk/imagenes/<?= $producto->getIdproducto()?>/small.jpg" width="100"><br>
+                            <img src="http://www.impuso2015.tk/imagenes/<?= $producto->getIdproducto()?>/small.jpg" height="100"><br>
                             <hr>
-                            descripción del artículo
+                            <?= $producto->getDescripcion() ?>
                             <br>
-                            <b>Precio: </b>
+                            <b>Precio:</b>
                             <?php
                             if ($descuento == 1)
-                                echo $producto->getPrecio();
+                                echo '$'.$producto->getPrecio();
                             else {
                                 ?>
                             <strike>

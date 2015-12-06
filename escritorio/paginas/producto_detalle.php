@@ -1,8 +1,9 @@
+<div id="detalle">
 <div id="titulo"><?=$producto->getNombre()?></div>
 
 
 <div id="imagen_detalle">
-    <img id="zoom_01"  src="http://www.impuso2015.tk/imagenes/<?=$producto->getIdproducto()?>/small.jpg" data-zoom-image="http://www.impuso2015.tk/imagenes/<?=$producto->getIdproducto()?>/large.jpg" height="200">
+    <img id="zoom_01"  src="http://www.impuso2015.tk/imagenes/<?=$producto->getIdproducto()?>/small.jpg" data-zoom-image="http://www.impuso2015.tk/imagenes/<?=$producto->getIdproducto()?>/large.jpg"  width="200">
 </div>
 <div id="detalle_producto">
     <br>
@@ -17,8 +18,9 @@
    
      <a href="http://www.impuso2015.tk/agregar/<?= $producto->getIdproducto() ?>">
         <input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_cart_SM.gif" border="0" name="submit"></a>
+    <hr>
 </div>
-<hr>
+
 <div id="redes">
     <table>
         <tr>
@@ -36,5 +38,5 @@
         </table>
 </div>
 
-
+</div>
 

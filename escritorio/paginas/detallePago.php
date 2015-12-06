@@ -1,6 +1,15 @@
 <?php
 $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
-
+$pedido = PedidosQuery::create()->filterByEstado('pendiente')->filterByIdcliente($usuario->getIdusuario())->findOne();
+$detallePedido;
+if(!isset($pedido))
+    echo 'nada';
+else{
+ $detallePedido = $pedido->getDetallepedidoss();
+if($detallePedido->count() == 0)
+{
+    echo 'nada';
+}else{
 ?>
 <div id="detalle_pago">
 <form action="/pago" method="post">
@@ -12,10 +21,11 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])
         </td>
         <td>
             <?php echo $usuario->getDireccion(); ?><br>
-           
+          
         </td>
             
     </tr>
+    
     <tr>
         <td>
             forma de pago:
@@ -28,9 +38,13 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])
             </select>
         </td>
     </tr>
+</table>
+    <br>
+    <br>
+    <table>
     <tr>
         <td colspan="2">
-    <center>Resumen del pedido:</center>
+    <center><b>Resumen del pedido:</b></center>
         </td>
     </tr>
     <tr>
@@ -38,10 +52,21 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])
         <th>cantidad</th>
         <th>precio</th>
     </tr>
+    <?php $total; 
+    $total = 0;
+    foreach ($detallePedido as $detalle) {?>
     <tr>
-        <td><center>Jabón</center></td>
-        <td><center>2</center></td>
-        <td><center>$2.5</center></td> 
+        <td><center><?= $detalle->getProductos()->getNombre() ?></center></td>
+        <td><center><?= $detalle->getCantidad() ?></center></td>
+        <td><center><?= '$'.$detalle->getPrecio() ?></center></td>
+    </tr>
+    <?php 
+    $total += $detalle->getPrecio()*$detalle->getCantidad();
+    }?>
+    <tr>
+        <th>Total</th>
+        <th></th>
+        <th><?= '$'.$total?></th>
     </tr>
     <tr>
         <td>
@@ -51,3 +76,4 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario'])
 </table>
 </form>
 </div>
+<?php }}?>

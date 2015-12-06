@@ -70,7 +70,7 @@ abstract class Productos implements ActiveRecordInterface
     /**
      * The value for the idproducto field.
      *
-     * @var        int
+     * @var        string
      */
     protected $idproducto;
 
@@ -115,6 +115,13 @@ abstract class Productos implements ActiveRecordInterface
      * @var        int
      */
     protected $iddescuento;
+
+    /**
+     * The value for the imagen field.
+     *
+     * @var        string
+     */
+    protected $imagen;
 
     /**
      * The value for the cantidad field.
@@ -373,7 +380,7 @@ abstract class Productos implements ActiveRecordInterface
     /**
      * Get the [idproducto] column value.
      *
-     * @return int
+     * @return string
      */
     public function getIdproducto()
     {
@@ -441,6 +448,16 @@ abstract class Productos implements ActiveRecordInterface
     }
 
     /**
+     * Get the [imagen] column value.
+     *
+     * @return string
+     */
+    public function getImagen()
+    {
+        return $this->imagen;
+    }
+
+    /**
      * Get the [cantidad] column value.
      *
      * @return int
@@ -453,13 +470,13 @@ abstract class Productos implements ActiveRecordInterface
     /**
      * Set the value of [idproducto] column.
      *
-     * @param int $v new value
+     * @param string $v new value
      * @return $this|\Productos The current object (for fluent API support)
      */
     public function setIdproducto($v)
     {
         if ($v !== null) {
-            $v = (int) $v;
+            $v = (string) $v;
         }
 
         if ($this->idproducto !== $v) {
@@ -599,6 +616,26 @@ abstract class Productos implements ActiveRecordInterface
     } // setIddescuento()
 
     /**
+     * Set the value of [imagen] column.
+     *
+     * @param string $v new value
+     * @return $this|\Productos The current object (for fluent API support)
+     */
+    public function setImagen($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->imagen !== $v) {
+            $this->imagen = $v;
+            $this->modifiedColumns[ProductosTableMap::COL_IMAGEN] = true;
+        }
+
+        return $this;
+    } // setImagen()
+
+    /**
      * Set the value of [cantidad] column.
      *
      * @param int $v new value
@@ -655,7 +692,7 @@ abstract class Productos implements ActiveRecordInterface
         try {
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : ProductosTableMap::translateFieldName('Idproducto', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->idproducto = (null !== $col) ? (int) $col : null;
+            $this->idproducto = (null !== $col) ? (string) $col : null;
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : ProductosTableMap::translateFieldName('Nombre', TableMap::TYPE_PHPNAME, $indexType)];
             $this->nombre = (null !== $col) ? (string) $col : null;
@@ -675,7 +712,10 @@ abstract class Productos implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : ProductosTableMap::translateFieldName('Iddescuento', TableMap::TYPE_PHPNAME, $indexType)];
             $this->iddescuento = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : ProductosTableMap::translateFieldName('Cantidad', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : ProductosTableMap::translateFieldName('Imagen', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->imagen = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : ProductosTableMap::translateFieldName('Cantidad', TableMap::TYPE_PHPNAME, $indexType)];
             $this->cantidad = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
@@ -685,7 +725,7 @@ abstract class Productos implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 8; // 8 = ProductosTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 9; // 9 = ProductosTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Productos'), 0, $e);
@@ -946,6 +986,9 @@ abstract class Productos implements ActiveRecordInterface
         if ($this->isColumnModified(ProductosTableMap::COL_IDDESCUENTO)) {
             $modifiedColumns[':p' . $index++]  = 'iddescuento';
         }
+        if ($this->isColumnModified(ProductosTableMap::COL_IMAGEN)) {
+            $modifiedColumns[':p' . $index++]  = 'imagen';
+        }
         if ($this->isColumnModified(ProductosTableMap::COL_CANTIDAD)) {
             $modifiedColumns[':p' . $index++]  = 'cantidad';
         }
@@ -961,7 +1004,7 @@ abstract class Productos implements ActiveRecordInterface
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
                     case 'idproducto':
-                        $stmt->bindValue($identifier, $this->idproducto, PDO::PARAM_INT);
+                        $stmt->bindValue($identifier, $this->idproducto, PDO::PARAM_STR);
                         break;
                     case 'nombre':
                         $stmt->bindValue($identifier, $this->nombre, PDO::PARAM_STR);
@@ -980,6 +1023,9 @@ abstract class Productos implements ActiveRecordInterface
                         break;
                     case 'iddescuento':
                         $stmt->bindValue($identifier, $this->iddescuento, PDO::PARAM_INT);
+                        break;
+                    case 'imagen':
+                        $stmt->bindValue($identifier, $this->imagen, PDO::PARAM_STR);
                         break;
                     case 'cantidad':
                         $stmt->bindValue($identifier, $this->cantidad, PDO::PARAM_INT);
@@ -1061,6 +1107,9 @@ abstract class Productos implements ActiveRecordInterface
                 return $this->getIddescuento();
                 break;
             case 7:
+                return $this->getImagen();
+                break;
+            case 8:
                 return $this->getCantidad();
                 break;
             default:
@@ -1100,7 +1149,8 @@ abstract class Productos implements ActiveRecordInterface
             $keys[4] => $this->getPrecio(),
             $keys[5] => $this->getIdsubcategoria(),
             $keys[6] => $this->getIddescuento(),
-            $keys[7] => $this->getCantidad(),
+            $keys[7] => $this->getImagen(),
+            $keys[8] => $this->getCantidad(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1209,6 +1259,9 @@ abstract class Productos implements ActiveRecordInterface
                 $this->setIddescuento($value);
                 break;
             case 7:
+                $this->setImagen($value);
+                break;
+            case 8:
                 $this->setCantidad($value);
                 break;
         } // switch()
@@ -1259,7 +1312,10 @@ abstract class Productos implements ActiveRecordInterface
             $this->setIddescuento($arr[$keys[6]]);
         }
         if (array_key_exists($keys[7], $arr)) {
-            $this->setCantidad($arr[$keys[7]]);
+            $this->setImagen($arr[$keys[7]]);
+        }
+        if (array_key_exists($keys[8], $arr)) {
+            $this->setCantidad($arr[$keys[8]]);
         }
     }
 
@@ -1323,6 +1379,9 @@ abstract class Productos implements ActiveRecordInterface
         if ($this->isColumnModified(ProductosTableMap::COL_IDDESCUENTO)) {
             $criteria->add(ProductosTableMap::COL_IDDESCUENTO, $this->iddescuento);
         }
+        if ($this->isColumnModified(ProductosTableMap::COL_IMAGEN)) {
+            $criteria->add(ProductosTableMap::COL_IMAGEN, $this->imagen);
+        }
         if ($this->isColumnModified(ProductosTableMap::COL_CANTIDAD)) {
             $criteria->add(ProductosTableMap::COL_CANTIDAD, $this->cantidad);
         }
@@ -1372,7 +1431,7 @@ abstract class Productos implements ActiveRecordInterface
 
     /**
      * Returns the primary key for this object (row).
-     * @return int
+     * @return string
      */
     public function getPrimaryKey()
     {
@@ -1382,7 +1441,7 @@ abstract class Productos implements ActiveRecordInterface
     /**
      * Generic method to set the primary key (idproducto column).
      *
-     * @param       int $key Primary key.
+     * @param       string $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
@@ -1419,6 +1478,7 @@ abstract class Productos implements ActiveRecordInterface
         $copyObj->setPrecio($this->getPrecio());
         $copyObj->setIdsubcategoria($this->getIdsubcategoria());
         $copyObj->setIddescuento($this->getIddescuento());
+        $copyObj->setImagen($this->getImagen());
         $copyObj->setCantidad($this->getCantidad());
 
         if ($deepCopy) {
@@ -1842,6 +1902,7 @@ abstract class Productos implements ActiveRecordInterface
         $this->precio = null;
         $this->idsubcategoria = null;
         $this->iddescuento = null;
+        $this->imagen = null;
         $this->cantidad = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();

@@ -64,8 +64,8 @@ $usuario = UsuariosQuery::create()->findOneByNombreusuario($nombreUsuario);
             
             <tr>
                 <td>
-                    <textarea rows="2" cols="40" name="direccion" value="<?= $usuario != null?$usuario->getDireccion():''?>">
-                        
+                    <textarea rows="4" cols="40" name="direccion">
+                       <?= $usuario != null?$usuario->getDireccion():''?>
                     </textarea>
                     
                 </td>

@@ -177,7 +177,7 @@ class UsuariosTableMap extends TableMap
         $this->addColumn('apellidos', 'Apellidos', 'VARCHAR', false, 45, null);
         $this->addColumn('telefono', 'Telefono', 'VARCHAR', false, 45, null);
         $this->addColumn('email', 'Email', 'VARCHAR', false, 100, null);
-        $this->addColumn('direccion', 'Direccion', 'VARCHAR', false, 45, null);
+        $this->addColumn('direccion', 'Direccion', 'VARCHAR', false, 500, null);
         $this->addColumn('fecharegistro', 'Fecharegistro', 'DATE', false, null, null);
         $this->addForeignKey('idrol', 'Idrol', 'INTEGER', 'roles', 'idrol', false, null, null);
         $this->addColumn('clave', 'Clave', 'VARCHAR', false, 300, null);

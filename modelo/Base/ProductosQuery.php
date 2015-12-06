@@ -27,6 +27,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductosQuery orderByPrecio($order = Criteria::ASC) Order by the precio column
  * @method     ChildProductosQuery orderByIdsubcategoria($order = Criteria::ASC) Order by the idsubcategoria column
  * @method     ChildProductosQuery orderByIddescuento($order = Criteria::ASC) Order by the iddescuento column
+ * @method     ChildProductosQuery orderByImagen($order = Criteria::ASC) Order by the imagen column
  * @method     ChildProductosQuery orderByCantidad($order = Criteria::ASC) Order by the cantidad column
  *
  * @method     ChildProductosQuery groupByIdproducto() Group by the idproducto column
@@ -36,6 +37,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductosQuery groupByPrecio() Group by the precio column
  * @method     ChildProductosQuery groupByIdsubcategoria() Group by the idsubcategoria column
  * @method     ChildProductosQuery groupByIddescuento() Group by the iddescuento column
+ * @method     ChildProductosQuery groupByImagen() Group by the imagen column
  * @method     ChildProductosQuery groupByCantidad() Group by the cantidad column
  *
  * @method     ChildProductosQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -81,35 +83,38 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildProductos findOne(ConnectionInterface $con = null) Return the first ChildProductos matching the query
  * @method     ChildProductos findOneOrCreate(ConnectionInterface $con = null) Return the first ChildProductos matching the query, or a new ChildProductos object populated from the query conditions when no match is found
  *
- * @method     ChildProductos findOneByIdproducto(int $idproducto) Return the first ChildProductos filtered by the idproducto column
+ * @method     ChildProductos findOneByIdproducto(string $idproducto) Return the first ChildProductos filtered by the idproducto column
  * @method     ChildProductos findOneByNombre(string $nombre) Return the first ChildProductos filtered by the nombre column
  * @method     ChildProductos findOneByDetalle(string $detalle) Return the first ChildProductos filtered by the detalle column
  * @method     ChildProductos findOneByDescripcion(string $descripcion) Return the first ChildProductos filtered by the descripcion column
  * @method     ChildProductos findOneByPrecio(double $precio) Return the first ChildProductos filtered by the precio column
  * @method     ChildProductos findOneByIdsubcategoria(int $idsubcategoria) Return the first ChildProductos filtered by the idsubcategoria column
  * @method     ChildProductos findOneByIddescuento(int $iddescuento) Return the first ChildProductos filtered by the iddescuento column
+ * @method     ChildProductos findOneByImagen(string $imagen) Return the first ChildProductos filtered by the imagen column
  * @method     ChildProductos findOneByCantidad(int $cantidad) Return the first ChildProductos filtered by the cantidad column *
 
  * @method     ChildProductos requirePk($key, ConnectionInterface $con = null) Return the ChildProductos by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOne(ConnectionInterface $con = null) Return the first ChildProductos matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
- * @method     ChildProductos requireOneByIdproducto(int $idproducto) Return the first ChildProductos filtered by the idproducto column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildProductos requireOneByIdproducto(string $idproducto) Return the first ChildProductos filtered by the idproducto column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByNombre(string $nombre) Return the first ChildProductos filtered by the nombre column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByDetalle(string $detalle) Return the first ChildProductos filtered by the detalle column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByDescripcion(string $descripcion) Return the first ChildProductos filtered by the descripcion column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByPrecio(double $precio) Return the first ChildProductos filtered by the precio column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByIdsubcategoria(int $idsubcategoria) Return the first ChildProductos filtered by the idsubcategoria column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByIddescuento(int $iddescuento) Return the first ChildProductos filtered by the iddescuento column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildProductos requireOneByImagen(string $imagen) Return the first ChildProductos filtered by the imagen column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildProductos requireOneByCantidad(int $cantidad) Return the first ChildProductos filtered by the cantidad column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildProductos[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildProductos objects based on current ModelCriteria
- * @method     ChildProductos[]|ObjectCollection findByIdproducto(int $idproducto) Return ChildProductos objects filtered by the idproducto column
+ * @method     ChildProductos[]|ObjectCollection findByIdproducto(string $idproducto) Return ChildProductos objects filtered by the idproducto column
  * @method     ChildProductos[]|ObjectCollection findByNombre(string $nombre) Return ChildProductos objects filtered by the nombre column
  * @method     ChildProductos[]|ObjectCollection findByDetalle(string $detalle) Return ChildProductos objects filtered by the detalle column
  * @method     ChildProductos[]|ObjectCollection findByDescripcion(string $descripcion) Return ChildProductos objects filtered by the descripcion column
  * @method     ChildProductos[]|ObjectCollection findByPrecio(double $precio) Return ChildProductos objects filtered by the precio column
  * @method     ChildProductos[]|ObjectCollection findByIdsubcategoria(int $idsubcategoria) Return ChildProductos objects filtered by the idsubcategoria column
  * @method     ChildProductos[]|ObjectCollection findByIddescuento(int $iddescuento) Return ChildProductos objects filtered by the iddescuento column
+ * @method     ChildProductos[]|ObjectCollection findByImagen(string $imagen) Return ChildProductos objects filtered by the imagen column
  * @method     ChildProductos[]|ObjectCollection findByCantidad(int $cantidad) Return ChildProductos objects filtered by the cantidad column
  * @method     ChildProductos[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
@@ -203,10 +208,10 @@ abstract class ProductosQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT idproducto, nombre, detalle, descripcion, precio, idsubcategoria, iddescuento, cantidad FROM productos WHERE idproducto = :p0';
+        $sql = 'SELECT idproducto, nombre, detalle, descripcion, precio, idsubcategoria, iddescuento, imagen, cantidad FROM productos WHERE idproducto = :p0';
         try {
             $stmt = $con->prepare($sql);
-            $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
+            $stmt->bindValue(':p0', $key, PDO::PARAM_STR);
             $stmt->execute();
         } catch (Exception $e) {
             Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -298,36 +303,24 @@ abstract class ProductosQuery extends ModelCriteria
      *
      * Example usage:
      * <code>
-     * $query->filterByIdproducto(1234); // WHERE idproducto = 1234
-     * $query->filterByIdproducto(array(12, 34)); // WHERE idproducto IN (12, 34)
-     * $query->filterByIdproducto(array('min' => 12)); // WHERE idproducto > 12
+     * $query->filterByIdproducto('fooValue');   // WHERE idproducto = 'fooValue'
+     * $query->filterByIdproducto('%fooValue%'); // WHERE idproducto LIKE '%fooValue%'
      * </code>
      *
-     * @param     mixed $idproducto The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $idproducto The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildProductosQuery The current query, for fluid interface
      */
     public function filterByIdproducto($idproducto = null, $comparison = null)
     {
-        if (is_array($idproducto)) {
-            $useMinMax = false;
-            if (isset($idproducto['min'])) {
-                $this->addUsingAlias(ProductosTableMap::COL_IDPRODUCTO, $idproducto['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($idproducto['max'])) {
-                $this->addUsingAlias(ProductosTableMap::COL_IDPRODUCTO, $idproducto['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
+        if (null === $comparison) {
+            if (is_array($idproducto)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $idproducto)) {
+                $idproducto = str_replace('*', '%', $idproducto);
+                $comparison = Criteria::LIKE;
             }
         }
 
@@ -546,6 +539,35 @@ abstract class ProductosQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(ProductosTableMap::COL_IDDESCUENTO, $iddescuento, $comparison);
+    }
+
+    /**
+     * Filter the query on the imagen column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByImagen('fooValue');   // WHERE imagen = 'fooValue'
+     * $query->filterByImagen('%fooValue%'); // WHERE imagen LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $imagen The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildProductosQuery The current query, for fluid interface
+     */
+    public function filterByImagen($imagen = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($imagen)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $imagen)) {
+                $imagen = str_replace('*', '%', $imagen);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(ProductosTableMap::COL_IMAGEN, $imagen, $comparison);
     }
 
     /**

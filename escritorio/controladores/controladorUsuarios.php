@@ -69,7 +69,7 @@ function registrar() {
         $usuario->setEmail($_POST['email']);
         $usuario->setDireccion($_POST['direccion']);
         $usuario->setClave(sha1($_POST['clave']));
-        $usuario->setIdrol(2);
+        $usuario->setIdrol(1);
         $usuario->setFecharegistro(date("Y-m-d"));
         $usuario->save();
         $_SESSION['usuario'] = $usuario->getNombreusuario();

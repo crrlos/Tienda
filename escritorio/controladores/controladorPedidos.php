@@ -1,8 +1,4 @@
 <?php
-
-if (session_status() == PHP_SESSION_NONE)
-    session_start();
-
 require_once 'config.php';
 $opcion = isset($_GET['opcarrito']) ? $_GET['opcarrito'] : '';
 /* * ********************************************
@@ -131,10 +127,13 @@ function agregar($pedido) {
 
 function mostrarHistorial() {
     if (isset($_SESSION['usuario'])) {
+        $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
+        
         require_once __DIR__.'/../plantillas/header.php';
         require_once __DIR__.'/../paginas/historial.php';
         require_once __DIR__.'/../plantillas/footer.php';
-        $usuario = UsuariosQuery::create()->findOneByNombreusuario($_SESSION['usuario']);
-        $pedidos = PedidosQuery::create()->findByIdcliente($usuario->getIdusuario());
+        
+    }else{
+        header("location:http://www.impuso2015.tk");
     }
 }

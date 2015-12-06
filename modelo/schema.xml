@@ -17,14 +17,14 @@
   <table name="detallepedidos" idMethod="native" phpName="Detallepedidos">
     <column name="iddetallepedido" phpName="Iddetallepedido" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="idpedido" phpName="Idpedido" type="INTEGER"/>
-    <column name="idproducto" phpName="Idproducto" type="INTEGER"/>
+    <column name="idproducto" phpName="Idproducto" type="VARCHAR" size="50"/>
     <column name="cantidad" phpName="Cantidad" type="INTEGER"/>
     <column name="precio" phpName="Precio" type="DOUBLE" size="7" scale="2"/>
+    <foreign-key foreignTable="productos" name="FK_detallepedidos_2">
+      <reference local="idproducto" foreign="idproducto"/>
+    </foreign-key>
     <foreign-key foreignTable="pedidos" name="fk_pedido">
       <reference local="idpedido" foreign="idpedido"/>
-    </foreign-key>
-    <foreign-key foreignTable="productos" name="fk_producto">
-      <reference local="idproducto" foreign="idproducto"/>
     </foreign-key>
     <index name="fk_pedido_idx">
       <index-column name="idpedido"/>
@@ -65,13 +65,14 @@
     </vendor>
   </table>
   <table name="productos" idMethod="native" phpName="Productos">
-    <column name="idproducto" phpName="Idproducto" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="idproducto" phpName="Idproducto" type="VARCHAR" size="50" primaryKey="true" required="true"/>
     <column name="nombre" phpName="Nombre" type="VARCHAR" size="200"/>
     <column name="detalle" phpName="Detalle" type="VARCHAR" size="5000"/>
     <column name="descripcion" phpName="Descripcion" type="VARCHAR" size="500"/>
     <column name="precio" phpName="Precio" type="DOUBLE" size="7" scale="2"/>
     <column name="idsubcategoria" phpName="Idsubcategoria" type="INTEGER"/>
     <column name="iddescuento" phpName="Iddescuento" type="INTEGER"/>
+    <column name="imagen" phpName="Imagen" type="VARCHAR" size="500"/>
     <column name="cantidad" phpName="Cantidad" type="INTEGER" size="10" sqlType="int(10) unsigned" required="true"/>
     <foreign-key foreignTable="descuentos" name="fk_descuento">
       <reference local="iddescuento" foreign="iddescuento"/>
@@ -117,7 +118,7 @@
     <column name="apellidos" phpName="Apellidos" type="VARCHAR" size="45"/>
     <column name="telefono" phpName="Telefono" type="VARCHAR" size="45"/>
     <column name="email" phpName="Email" type="VARCHAR" size="100"/>
-    <column name="direccion" phpName="Direccion" type="VARCHAR" size="45"/>
+    <column name="direccion" phpName="Direccion" type="VARCHAR" size="500"/>
     <column name="fecharegistro" phpName="Fecharegistro" type="DATE"/>
     <column name="idrol" phpName="Idrol" type="INTEGER"/>
     <column name="clave" phpName="Clave" type="VARCHAR" size="300"/>

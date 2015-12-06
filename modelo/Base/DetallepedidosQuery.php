@@ -40,16 +40,6 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildDetallepedidosQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildDetallepedidosQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
  *
- * @method     ChildDetallepedidosQuery leftJoinPedidos($relationAlias = null) Adds a LEFT JOIN clause to the query using the Pedidos relation
- * @method     ChildDetallepedidosQuery rightJoinPedidos($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Pedidos relation
- * @method     ChildDetallepedidosQuery innerJoinPedidos($relationAlias = null) Adds a INNER JOIN clause to the query using the Pedidos relation
- *
- * @method     ChildDetallepedidosQuery joinWithPedidos($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Pedidos relation
- *
- * @method     ChildDetallepedidosQuery leftJoinWithPedidos() Adds a LEFT JOIN clause and with to the query using the Pedidos relation
- * @method     ChildDetallepedidosQuery rightJoinWithPedidos() Adds a RIGHT JOIN clause and with to the query using the Pedidos relation
- * @method     ChildDetallepedidosQuery innerJoinWithPedidos() Adds a INNER JOIN clause and with to the query using the Pedidos relation
- *
  * @method     ChildDetallepedidosQuery leftJoinProductos($relationAlias = null) Adds a LEFT JOIN clause to the query using the Productos relation
  * @method     ChildDetallepedidosQuery rightJoinProductos($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Productos relation
  * @method     ChildDetallepedidosQuery innerJoinProductos($relationAlias = null) Adds a INNER JOIN clause to the query using the Productos relation
@@ -60,14 +50,24 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildDetallepedidosQuery rightJoinWithProductos() Adds a RIGHT JOIN clause and with to the query using the Productos relation
  * @method     ChildDetallepedidosQuery innerJoinWithProductos() Adds a INNER JOIN clause and with to the query using the Productos relation
  *
- * @method     \PedidosQuery|\ProductosQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     ChildDetallepedidosQuery leftJoinPedidos($relationAlias = null) Adds a LEFT JOIN clause to the query using the Pedidos relation
+ * @method     ChildDetallepedidosQuery rightJoinPedidos($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Pedidos relation
+ * @method     ChildDetallepedidosQuery innerJoinPedidos($relationAlias = null) Adds a INNER JOIN clause to the query using the Pedidos relation
+ *
+ * @method     ChildDetallepedidosQuery joinWithPedidos($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Pedidos relation
+ *
+ * @method     ChildDetallepedidosQuery leftJoinWithPedidos() Adds a LEFT JOIN clause and with to the query using the Pedidos relation
+ * @method     ChildDetallepedidosQuery rightJoinWithPedidos() Adds a RIGHT JOIN clause and with to the query using the Pedidos relation
+ * @method     ChildDetallepedidosQuery innerJoinWithPedidos() Adds a INNER JOIN clause and with to the query using the Pedidos relation
+ *
+ * @method     \ProductosQuery|\PedidosQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildDetallepedidos findOne(ConnectionInterface $con = null) Return the first ChildDetallepedidos matching the query
  * @method     ChildDetallepedidos findOneOrCreate(ConnectionInterface $con = null) Return the first ChildDetallepedidos matching the query, or a new ChildDetallepedidos object populated from the query conditions when no match is found
  *
  * @method     ChildDetallepedidos findOneByIddetallepedido(int $iddetallepedido) Return the first ChildDetallepedidos filtered by the iddetallepedido column
  * @method     ChildDetallepedidos findOneByIdpedido(int $idpedido) Return the first ChildDetallepedidos filtered by the idpedido column
- * @method     ChildDetallepedidos findOneByIdproducto(int $idproducto) Return the first ChildDetallepedidos filtered by the idproducto column
+ * @method     ChildDetallepedidos findOneByIdproducto(string $idproducto) Return the first ChildDetallepedidos filtered by the idproducto column
  * @method     ChildDetallepedidos findOneByCantidad(int $cantidad) Return the first ChildDetallepedidos filtered by the cantidad column
  * @method     ChildDetallepedidos findOneByPrecio(double $precio) Return the first ChildDetallepedidos filtered by the precio column *
 
@@ -76,14 +76,14 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildDetallepedidos requireOneByIddetallepedido(int $iddetallepedido) Return the first ChildDetallepedidos filtered by the iddetallepedido column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildDetallepedidos requireOneByIdpedido(int $idpedido) Return the first ChildDetallepedidos filtered by the idpedido column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildDetallepedidos requireOneByIdproducto(int $idproducto) Return the first ChildDetallepedidos filtered by the idproducto column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildDetallepedidos requireOneByIdproducto(string $idproducto) Return the first ChildDetallepedidos filtered by the idproducto column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildDetallepedidos requireOneByCantidad(int $cantidad) Return the first ChildDetallepedidos filtered by the cantidad column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildDetallepedidos requireOneByPrecio(double $precio) Return the first ChildDetallepedidos filtered by the precio column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildDetallepedidos[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildDetallepedidos objects based on current ModelCriteria
  * @method     ChildDetallepedidos[]|ObjectCollection findByIddetallepedido(int $iddetallepedido) Return ChildDetallepedidos objects filtered by the iddetallepedido column
  * @method     ChildDetallepedidos[]|ObjectCollection findByIdpedido(int $idpedido) Return ChildDetallepedidos objects filtered by the idpedido column
- * @method     ChildDetallepedidos[]|ObjectCollection findByIdproducto(int $idproducto) Return ChildDetallepedidos objects filtered by the idproducto column
+ * @method     ChildDetallepedidos[]|ObjectCollection findByIdproducto(string $idproducto) Return ChildDetallepedidos objects filtered by the idproducto column
  * @method     ChildDetallepedidos[]|ObjectCollection findByCantidad(int $cantidad) Return ChildDetallepedidos objects filtered by the cantidad column
  * @method     ChildDetallepedidos[]|ObjectCollection findByPrecio(double $precio) Return ChildDetallepedidos objects filtered by the precio column
  * @method     ChildDetallepedidos[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
@@ -357,38 +357,24 @@ abstract class DetallepedidosQuery extends ModelCriteria
      *
      * Example usage:
      * <code>
-     * $query->filterByIdproducto(1234); // WHERE idproducto = 1234
-     * $query->filterByIdproducto(array(12, 34)); // WHERE idproducto IN (12, 34)
-     * $query->filterByIdproducto(array('min' => 12)); // WHERE idproducto > 12
+     * $query->filterByIdproducto('fooValue');   // WHERE idproducto = 'fooValue'
+     * $query->filterByIdproducto('%fooValue%'); // WHERE idproducto LIKE '%fooValue%'
      * </code>
      *
-     * @see       filterByProductos()
-     *
-     * @param     mixed $idproducto The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $idproducto The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildDetallepedidosQuery The current query, for fluid interface
      */
     public function filterByIdproducto($idproducto = null, $comparison = null)
     {
-        if (is_array($idproducto)) {
-            $useMinMax = false;
-            if (isset($idproducto['min'])) {
-                $this->addUsingAlias(DetallepedidosTableMap::COL_IDPRODUCTO, $idproducto['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($idproducto['max'])) {
-                $this->addUsingAlias(DetallepedidosTableMap::COL_IDPRODUCTO, $idproducto['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
+        if (null === $comparison) {
+            if (is_array($idproducto)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $idproducto)) {
+                $idproducto = str_replace('*', '%', $idproducto);
+                $comparison = Criteria::LIKE;
             }
         }
 
@@ -478,83 +464,6 @@ abstract class DetallepedidosQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query by a related \Pedidos object
-     *
-     * @param \Pedidos|ObjectCollection $pedidos The related object(s) to use as filter
-     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @throws \Propel\Runtime\Exception\PropelException
-     *
-     * @return ChildDetallepedidosQuery The current query, for fluid interface
-     */
-    public function filterByPedidos($pedidos, $comparison = null)
-    {
-        if ($pedidos instanceof \Pedidos) {
-            return $this
-                ->addUsingAlias(DetallepedidosTableMap::COL_IDPEDIDO, $pedidos->getIdpedido(), $comparison);
-        } elseif ($pedidos instanceof ObjectCollection) {
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-
-            return $this
-                ->addUsingAlias(DetallepedidosTableMap::COL_IDPEDIDO, $pedidos->toKeyValue('PrimaryKey', 'Idpedido'), $comparison);
-        } else {
-            throw new PropelException('filterByPedidos() only accepts arguments of type \Pedidos or Collection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the Pedidos relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return $this|ChildDetallepedidosQuery The current query, for fluid interface
-     */
-    public function joinPedidos($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Pedidos');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'Pedidos');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the Pedidos relation Pedidos object
-     *
-     * @see useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return \PedidosQuery A secondary query class using the current class as primary query
-     */
-    public function usePedidosQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        return $this
-            ->joinPedidos($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Pedidos', '\PedidosQuery');
-    }
-
-    /**
      * Filter the query by a related \Productos object
      *
      * @param \Productos|ObjectCollection $productos The related object(s) to use as filter
@@ -629,6 +538,83 @@ abstract class DetallepedidosQuery extends ModelCriteria
         return $this
             ->joinProductos($relationAlias, $joinType)
             ->useQuery($relationAlias ? $relationAlias : 'Productos', '\ProductosQuery');
+    }
+
+    /**
+     * Filter the query by a related \Pedidos object
+     *
+     * @param \Pedidos|ObjectCollection $pedidos The related object(s) to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @throws \Propel\Runtime\Exception\PropelException
+     *
+     * @return ChildDetallepedidosQuery The current query, for fluid interface
+     */
+    public function filterByPedidos($pedidos, $comparison = null)
+    {
+        if ($pedidos instanceof \Pedidos) {
+            return $this
+                ->addUsingAlias(DetallepedidosTableMap::COL_IDPEDIDO, $pedidos->getIdpedido(), $comparison);
+        } elseif ($pedidos instanceof ObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(DetallepedidosTableMap::COL_IDPEDIDO, $pedidos->toKeyValue('PrimaryKey', 'Idpedido'), $comparison);
+        } else {
+            throw new PropelException('filterByPedidos() only accepts arguments of type \Pedidos or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Pedidos relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildDetallepedidosQuery The current query, for fluid interface
+     */
+    public function joinPedidos($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Pedidos');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Pedidos');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Pedidos relation Pedidos object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \PedidosQuery A secondary query class using the current class as primary query
+     */
+    public function usePedidosQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    {
+        return $this
+            ->joinPedidos($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Pedidos', '\PedidosQuery');
     }
 
     /**

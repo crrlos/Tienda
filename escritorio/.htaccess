@@ -1,10 +1,4 @@
-ExpiresActive off
-ExpiresByType application/javascript "access plus 1 month"  
-ExpiresByType image/jpg "access plus 1 month" 
-ExpiresByType image/jpeg "access plus 1 month" 
-ExpiresByType image/gif "access plus 1 month" 
-ExpiresByType image/png "access plus 1 month" 
-ExpiresByType text/css "access plus 1 month" 
+
 
 ErrorDocument 404 /index.php?opcion=notfound
 
@@ -23,6 +17,7 @@ RewriteRule ^opcarrito/?$ /controladores/controladorPedidos.php?opcarrito=2
 RewriteRule ^agregar/(.*)/?$ /controladores/controladorPedidos.php?opcarrito=1&idproducto=$1
 RewriteRule ^testing/?$ /controladores/testing.php
 RewriteRule ^pago/?$ index.php?opcion=pago
+RewriteRule ^pago/pendiente?$ index.php?opcion=pp
 Rewriterule ^actualizar/?(.*)/?$ index.php?opcion=actualizar&estado=$1
 RewriteRule ^forgot/?$ index.php?opcion=recuperar&opusuario=4
 RewriteRule ^forgot/error$ index.php?opcion=recuperar&estado=0

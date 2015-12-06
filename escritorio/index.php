@@ -51,6 +51,9 @@ switch ($opcion) {
     case 'notfound':
          include('./paginas/error.php');
         break;
+    case 'pp':
+         include('./paginas/pago_pendiente.php');
+        break;
     default:
       
 }
