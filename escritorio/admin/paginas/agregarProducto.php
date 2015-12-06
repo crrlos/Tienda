@@ -1,3 +1,9 @@
+<?php 
+require_once __DIR__.'/../../controladores/config.php';
+$categorias = CategoriasQuery::create()->find();
+
+$descuentos = DescuentosQuery::create()->find();
+?>
 <form action="http://www.impuso2015.tk/controladores/controladorProductos.php" method="POST" enctype="multipart/form-data">
     <table>
         <input type="hidden" value="2" name="opproducto">
@@ -57,10 +63,26 @@
         </tr>
         <tr>
             <td>
-               Sub-Categoria:
+               Categoría:
             </td>
             <td>
-                <select>
+                <select onchange="cargar_subcategorias();" id="categorias">
+                    <option value="0">----------------</option>
+                    <?php  
+                    foreach ($categorias as $categoria){
+                    ?>
+                    <option value="<?= $categoria->getIdcategoria()?>"><?= $categoria->getNombre()?></option>
+                    <?php }?>
+                </select>
+            </td>
+                
+        </tr>
+        <tr>
+            <td>
+               SubCategoria:
+            </td>
+            <td>
+                <select id="subcategorias" name="subcategoria">
                     <option value="1">subcategoria</option>
                 </select>
             </td>
@@ -71,8 +93,12 @@
                 Descuento:
             </td>
             <td>
-               <select>
-                    <option value="1">0%</option>
+               <select name="descuento">
+                      <?php  
+                    foreach ($descuentos as $descuento){
+                    ?>
+                   <option value="<?= $descuento->getIddescuento()?>"><?= $descuento->getValor()?>%</option>
+                    <?php }?>
                 </select>
             </td>
                 

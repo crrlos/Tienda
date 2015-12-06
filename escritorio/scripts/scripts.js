@@ -24,6 +24,7 @@ function validar_cambio(){
     }
 }
 
+
 //comprobar usuario
 $(document).ready(function () {
     $('#nombreusuario').blur(function () {

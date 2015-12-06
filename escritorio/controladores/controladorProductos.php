@@ -117,8 +117,8 @@ function agregarProducto() {
         $producto->setDetalle($_POST['detalle']);
         $producto->setDescripcion($_POST['descripcion']);
         $producto->setPrecio($_POST['precio']);
-        $producto->setIdsubcategoria(1);
-        $producto->setIddescuento(1);
+        $producto->setIdsubcategoria($_POST['subcategoria']);
+        $producto->setIddescuento($_POST['descuento']);
         $producto->setCantidad($_POST['cantidad']);
         $producto->save();
 }
